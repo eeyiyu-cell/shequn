@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>跑红+ 社群活动</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:#F5F5F7;color:#303133;max-width:480px;margin:0 auto;min-height:100vh;}
+  .top{position:sticky;top:0;z-index:10;height:50px;background:linear-gradient(90deg,#ffb799,#ff44a5);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;box-shadow:0 2px 8px rgba(255,68,165,.2);}
+  .body{padding:12px;}
+  .tip{font-size:12px;color:#909399;margin:2px 4px 12px;}
+  .card{background:#fff;border-radius:15px;overflow:hidden;margin-bottom:14px;cursor:pointer;box-shadow:0 1px 8px rgba(0,0,0,.04);}
+  .card:active{transform:scale(.99);}
+  .card img{width:100%;height:168px;object-fit:cover;display:block;}
+  .card-bd{padding:12px 14px 14px;}
+  .card-title{font-size:17px;font-weight:600;color:#000;}
+  .card-meta{font-size:12px;color:#909399;margin-top:8px;line-height:1.9;}
+  .tag{display:inline-block;padding:0 9px;height:22px;line-height:22px;border-radius:16px;font-size:11px;background:#FFF5FB;color:#FF0086;margin-right:6px;vertical-align:middle;}
+  .tag.gray{background:#F2F3F5;color:#909399;}
+  .points{color:#FF0086;font-weight:600;}
+  .back{display:inline-block;font-size:14px;color:#FF0086;margin-bottom:12px;cursor:pointer;}
+  .sec{background:#fff;border-radius:14px;padding:14px 16px;margin-bottom:14px;font-size:14px;color:#303133;line-height:1.9;}
+  .sec h4{font-size:15px;margin-bottom:8px;color:#000;}
+  .sec img{max-width:100%;border-radius:8px;display:block;margin:8px 0;}
+  .sec ul,.sec ol{padding-left:22px;margin:6px 0;}
+  .quota{display:flex;gap:10px;margin-top:6px;}
+  .quota-box{flex:1;background:#F7F8FA;border-radius:10px;padding:10px 12px;text-align:center;}
+  .quota-box .n{font-size:18px;font-weight:600;color:#FF0086;}
+  .quota-box .l{font-size:12px;color:#909399;margin-top:2px;}
+  .signer{display:inline-block;padding:0 10px;height:24px;line-height:24px;border-radius:16px;font-size:12px;background:#F2F3F5;color:#606266;margin:0 6px 6px 0;}
+  .signer.v{background:#EEF4FF;color:#3A6FE0;}
+  .signer.p{background:#FFF5FB;color:#FF0086;}
+  .btn{display:block;width:100%;height:46px;border:none;border-radius:999px;background:#FF0086;color:#fff;
+    font-size:16px;font-weight:500;cursor:pointer;margin-top:12px;font-family:inherit;}
+  .btn.plain{background:#fff;color:#FF0086;border:1px solid #FF0086;}
+  .btn:disabled{background:#DCDFE6;color:#fff;cursor:not-allowed;}
+  .empty{text-align:center;color:#909399;padding:40px 0;font-size:14px;}
+  .toast{position:fixed;left:50%;bottom:40px;transform:translateX(-50%);background:rgba(0,0,0,.8);color:#fff;
+    padding:10px 20px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:99;max-width:88%;text-align:center;}
+  .toast.show{opacity:1;}
+</style>
+</head>
+<body>
+<div class="top">跑红+ 社群活动</div>
+<div class="body" id="app"></div>
+<div class="toast" id="toast"></div>
+<script>
+(function(){
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+  function pad(n){ return (n<10?"0":"")+n; }
+  function nowStr(){ var d=new Date(); return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())+" "+pad(d.getHours())+":"+pad(d.getMinutes()); }
+  var tt; function toast(m){ var el=document.getElementById("toast"); el.textContent=m; el.classList.add("show"); clearTimeout(tt); tt=setTimeout(function(){ el.classList.remove("show"); },2000); }
+
+  /* 与后台一致的活动配置 */
+  var MEMBERS=[
+    {id:1,name:"陈雨桐"},{id:2,name:"李思远"},{id:3,name:"王梦琪"},{id:4,name:"赵子昂"},{id:5,name:"刘诗涵"},
+    {id:6,name:"黄嘉俊"},{id:7,name:"周雅雯"},{id:8,name:"吴浩然"},{id:9,name:"郑晓彤"},{id:10,name:"孙铭泽"},{id:11,name:"白小白"}
+  ];
+  var CURRENT_UID=11;
+  var ACTIVITIES=[
+    {id:1,name:"体育理疗健身活动",start:"2026-07-10 19:00",end:"2026-07-10 20:30",capV:1,capP:4,pointsV:80,pointsP:50,desc:"各类体育、理疗型活动，提升员工身体素质",cover:"./images/spiritual_1.jpg",signups:[
+      {mid:1,role:"v",time:"2026-07-01 10:12"},{mid:3,role:"p",time:"2026-07-01 10:30"},{mid:5,role:"p",time:"2026-07-01 11:02"}]},
+    {id:2,name:"全员\"一起走\"公益",start:"2026-07-12 08:00",end:"2026-07-12 12:00",capV:3,capP:17,pointsV:50,pointsP:30,desc:"全体员工共同参与的公益行走活动",cover:"./images/spiritual_2.jpg",signups:[
+      {mid:2,role:"v",time:"2026-06-28 09:11"},{mid:4,role:"p",time:"2026-06-28 09:40"},{mid:8,role:"p",time:"2026-06-29 14:25"},{mid:9,role:"p",time:"2026-06-30 16:08"}]},
+    {id:3,name:"\"可持续一厦\"公益",start:"2026-07-15 09:00",end:"2026-07-15 17:00",capV:1,capP:2,pointsV:40,pointsP:20,desc:"志愿参加\"可持续一厦\"环保公益活动",cover:"./images/spiritual_3.jpg",signups:[
+      {mid:6,role:"v",time:"2026-07-02 10:01"},{mid:7,role:"p",time:"2026-07-02 10:03"},{mid:10,role:"p",time:"2026-07-02 10:05"}]},
+    {id:4,name:"流浪动物救助",start:"2026-07-18 10:00",end:"2026-07-18 16:00",capV:2,capP:6,pointsV:60,pointsP:40,desc:"参与流浪动物救助公益行动",cover:"./images/spiritual_4.jpg",signups:[
+      {mid:1,role:"v",time:"2026-06-18 11:20"},{mid:3,role:"p",time:"2026-06-18 12:05"},{mid:6,role:"p",time:"2026-06-19 09:33"}]},
+    {id:5,name:"\"集美超美\"艺术评比",start:"2026-07-20 14:00",end:"2026-07-20 18:00",capV:2,capP:8,pointsV:45,pointsP:25,desc:"挖掘集美艺术区，作品输出、评比，公区展示、积分表彰",cover:"./images/spiritual_5.jpg",signups:[
+      {mid:2,role:"v",time:"2026-06-23 15:10"},{mid:4,role:"p",time:"2026-06-23 15:22"},{mid:7,role:"p",time:"2026-06-24 10:40"}]},
+    {id:6,name:"红顶艺术馆参访",start:"2026-07-25 14:00",end:"2026-07-25 17:00",capV:1,capP:5,pointsV:50,pointsP:30,desc:"做客红顶艺术馆，与艺术家近距离接触",cover:"./images/spiritual_6.jpg",signups:[]},
+    {id:7,name:"可回收塑料饰品制作",start:"2026-07-28 15:00",end:"2026-07-28 17:00",capV:2,capP:10,pointsV:40,pointsP:20,desc:"用可回收塑料制作钥匙包、包包、手机挂件等",cover:"./images/spiritual_7.jpg",signups:[]},
+    {id:8,name:"中药手串制作",start:"2026-07-30 14:00",end:"2026-07-30 16:00",capV:1,capP:8,pointsV:60,pointsP:30,desc:"手工制作中药手串等非遗手作",cover:"./images/spiritual_8.jpg",signups:[]}
+  ];
+  var NOW="2026-07-07 10:00";
+  var ROLE_LABEL={v:"志愿者",p:"参与者"};
+  var AC_ST={signup:"报名中",full:"已满",running:"进行中",ended:"已结束"};
+  var GD_PAL=[["#FF7AA2","#FF0086"],["#FFB26B","#FF5E8A"],["#9D7BFF","#FF6FB5"],["#36D1C4","#2E86FF"],["#FFC53D","#FF7A45"]];
+
+  function member(id){ return MEMBERS.find(function(m){return m.id===id;}); }
+  function mname(id){ var m=member(id); return m?m.name:"成员"; }
+  function roleCount(a,r){ return a.signups.filter(function(s){return s.role===r;}).length; }
+  function roleCap(a,r){ return r==="v"?a.capV:a.capP; }
+  function roleRemain(a,r){ return Math.max(0,roleCap(a,r)-roleCount(a,r)); }
+  function rolePoints(a,r){ return r==="v"?a.pointsV:a.pointsP; }
+  function signedByMe(a){ return a.signups.some(function(s){return s.mid===CURRENT_UID;}); }
+  function aStatus(a){
+    if(a.end<NOW) return "ended";
+    if(roleRemain(a,"v")<=0&&roleRemain(a,"p")<=0) return "full";
+    if(a.start<=NOW) return "running";
+    return "signup";
+  }
+  function acImg(a){
+    if(a.cover) return a.cover;
+    var pal=GD_PAL[a.id%GD_PAL.length];
+    var raw=a.name||"活动封面", l1=raw, l2="";
+    if(raw.length>7){ var k=Math.ceil(raw.length/2); l1=raw.slice(0,k); l2=raw.slice(k); }
+    l1=esc(l1); l2=esc(l2);
+    var svg='<svg xmlns="http://www.w3.org/2000/svg" width="400" height="220" font-family="PingFang SC,Microsoft YaHei,sans-serif">'
+      +'<defs><linearGradient id="ac'+a.id+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+pal[0]+'"/><stop offset="1" stop-color="'+pal[1]+'"/></linearGradient></defs>'
+      +'<rect width="400" height="220" fill="url(#ac'+a.id+')"/>'
+      +'<circle cx="350" cy="30" r="80" fill="#fff" opacity="0.13"/>'
+      +'<circle cx="44" cy="200" r="60" fill="#fff" opacity="0.10"/>'
+      +'<text x="28" y="'+(l2?108:124)+'" font-size="30" font-weight="700" fill="#fff">'+l1+'</text>'
+      +(l2?'<text x="28" y="150" font-size="30" font-weight="700" fill="#fff">'+l2+'</text>':'')
+      +'</svg>';
+    return "data:image/svg+xml;utf8,"+encodeURIComponent(svg);
+  }
+
+  var app=document.getElementById("app");
+  function renderList(){
+    var rows=ACTIVITIES.slice().sort(function(x,y){return x.start<y.start?1:-1;});
+    app.innerHTML='<div class="tip">本页面根据后台活动配置生成，报名成功即参加并获得对应积分</div>'
+      +rows.map(function(a){
+        var st=aStatus(a);
+        return '<div class="card" onclick="H5.detail('+a.id+')"><img src="'+acImg(a)+'" alt="'+esc(a.name)+'">'
+          +'<div class="card-bd"><div class="card-title">'+esc(a.name)+'</div>'
+          +'<div class="card-meta"><span class="tag'+(st==="ended"||st==="full"?" gray":"")+'">'+AC_ST[st]+'</span>'
+          +'<span class="points">参与者 +'+a.pointsP+'</span> · <span class="points">志愿者 +'+a.pointsV+'</span><br>'
+          +a.start+' ~ '+a.end+'</div></div></div>';
+      }).join("");
+    window.scrollTo(0,0);
+  }
+  function renderDetail(id){
+    var a=ACTIVITIES.find(function(x){return x.id===id;}); if(!a){ renderList(); return; }
+    var st=aStatus(a), mine=signedByMe(a);
+    var btns='';
+    if(mine) btns='<button class="btn" disabled>已报名</button>';
+    else if(st==="ended") btns='<button class="btn" disabled>活动已结束</button>';
+    else{
+      if(roleRemain(a,"p")>0) btns+='<button class="btn" onclick="H5.sign('+a.id+',\'p\')">以参与者报名（+'+a.pointsP+' 积分）</button>';
+      if(roleRemain(a,"v")>0) btns+='<button class="btn plain" onclick="H5.sign('+a.id+',\'v\')">以志愿者报名（+'+a.pointsV+' 积分）</button>';
+      if(!btns) btns='<button class="btn" disabled>名额已满</button>';
+    }
+    var signers=a.signups.length
+      ? a.signups.map(function(s){var m=member(s.mid);return '<span class="signer '+s.role+'">'+esc(m?m.name:"成员")+' · '+ROLE_LABEL[s.role]+'</span>';}).join("")
+      : '<span style="color:#909399">暂无人报名</span>';
+    app.innerHTML='<span class="back" onclick="H5.list()">‹ 返回活动列表</span>'
+      +'<div class="card" style="cursor:default"><img src="'+acImg(a)+'" alt="">'
+        +'<div class="card-bd"><div class="card-title">'+esc(a.name)+'</div>'
+        +'<div class="card-meta"><span class="tag'+(st==="ended"||st==="full"?" gray":"")+'">'+AC_ST[st]+'</span>'+a.start+' ~ '+a.end+'</div>'
+        +'<div class="quota"><div class="quota-box"><div class="n">'+roleCount(a,"p")+'/'+a.capP+'</div><div class="l">参与者名额 · 剩 '+roleRemain(a,"p")+'</div></div>'
+        +'<div class="quota-box"><div class="n">'+roleCount(a,"v")+'/'+a.capV+'</div><div class="l">志愿者名额 · 剩 '+roleRemain(a,"v")+'</div></div></div>'
+      +'</div></div>'
+      +'<div class="sec"><h4>活动说明</h4>'+((a.desc&&a.desc.trim())?a.desc:'<span style="color:#909399">暂无活动说明</span>')+'</div>'
+      +'<div class="sec"><h4>已报名（'+a.signups.length+'）</h4>'+signers+'</div>'
+      +btns;
+    window.scrollTo(0,0);
+  }
+  window.H5={
+    list:renderList,
+    detail:renderDetail,
+    sign:function(id,r){
+      var a=ACTIVITIES.find(function(x){return x.id===id;}); if(!a)return;
+      if(signedByMe(a)){ toast(mname(CURRENT_UID)+" 已报名该活动"); renderDetail(id); return; }
+      if(roleRemain(a,r)<=0){ toast(ROLE_LABEL[r]+"名额已满"); renderDetail(id); return; }
+      a.signups.push({mid:CURRENT_UID,role:r,time:nowStr()});
+      toast("报名成功，获得 "+rolePoints(a,r)+" 积分");
+      renderDetail(id);
+    }
+  };
+  renderList();
+})();
+</script>
+</body>
+</html>
