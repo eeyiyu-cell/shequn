@@ -381,6 +381,12 @@
             <div class="hh-err">请选择完整且正确的活动时间</div>
           </div>
         </div>
+        <div class="hh-row" id="ac-row-address">
+          <label>活动地址</label>
+          <div class="hh-ctrl">
+            <input id="ac-address" class="hh-ipt ac-w-lg" maxlength="80" placeholder="如：跑红集团总部 · 3F 健身中心">
+          </div>
+        </div>
       </div>
 
       <div class="ac-group">
@@ -449,7 +455,6 @@
   <div class="hh-modal">
     <div class="hh-modal-hd"><span style="font-weight:700">活动报名</span><span class="hh-x" onclick="suClose()">&times;</span></div>
     <div class="hh-modal-bd">
-      <div class="su-info" id="su-info"></div>
       <div class="hh-row">
         <label><i>*</i>报名角色</label>
         <div class="hh-ctrl">
@@ -750,6 +755,8 @@
   .hh-btn-primary{background:#FF0086;border-color:#FF0086;color:#fff;}
   .hh-btn-primary:hover{background:#ff009a;border-color:#ff009a;color:#fff;}
   .hh-btn-primary:active{background:#fa0082;border-color:#fa0082;}
+  .hh-btn-lg{height:44px;padding:0 28px;font-size:16px;font-weight:600;border-radius:8px;letter-spacing:.5px;box-shadow:0 6px 16px rgba(255,0,134,.22);}
+  .hh-btn-lg:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(255,0,134,.32);}
 
   /* 表格（规范2.9）：表头浅灰底#F2F3F5+次级字色、正文#303133、行hover #F7F8FA */
   table.hh-grid{width:100%;border-collapse:collapse;font-size:14px;}
@@ -788,6 +795,7 @@
   .hh-x:hover{color:#FF0086;}
   .hh-modal-bd{padding:22px;max-height:62vh;overflow-y:auto;}
   .hh-modal-ft{padding:14px 22px;border-top:1px solid #EBEEF5;display:flex;justify-content:flex-end;gap:10px;}
+  #su-mask .hh-modal-hd,#su-mask .hh-modal-ft{border-color:transparent;}
   .hh-row{display:flex;align-items:flex-start;margin-bottom:18px;}
   .hh-row>label{width:84px;flex-shrink:0;text-align:right;padding-right:12px;line-height:32px;color:#606266;}
   .hh-row>label i{color:#FF0086;font-style:normal;margin-right:2px;}
@@ -879,19 +887,19 @@
     {id:4,name:"直播互动粉丝群",owner:"张启铭",intro:"直播预告与粉丝互动",createTime:"2026-06-01 20:05",status:"off",members:19}
   ];
   var aSeq=8, ACTIVITIES=[
-    {id:1,cid:1,name:"体育理疗健身活动",start:"2026-07-10 19:00",end:"2026-07-10 20:30",capV:1,capP:4,pointsV:80,pointsP:50,desc:"各类体育、理疗型活动，提升员工身体素质；每周五 19:00-20:30",cover:"./images/activities/activity_1_fitness_therapy.png",signups:[
-      {mid:1,role:"v",time:"2026-07-01 10:12"},{mid:3,role:"p",time:"2026-07-01 10:30"},{mid:5,role:"p",time:"2026-07-01 11:02"}]},
-    {id:2,cid:2,name:"全员\"一起走\"公益",start:"2026-07-12 08:00",end:"2026-07-12 12:00",capV:3,capP:17,pointsV:50,pointsP:30,desc:"全体员工共同参与的公益行走活动",cover:"./images/activities/activity_2_walk_for_good.png",signups:[
-      {mid:2,role:"v",time:"2026-06-28 09:11"},{mid:4,role:"p",time:"2026-06-28 09:40"},{mid:8,role:"p",time:"2026-06-29 14:25"},{mid:9,role:"p",time:"2026-06-30 16:08"}]},
-    {id:3,cid:3,name:"\"可持续一厦\"公益",start:"2026-07-15 09:00",end:"2026-07-15 17:00",capV:1,capP:2,pointsV:40,pointsP:20,desc:"志愿参加\"可持续一厦\"环保公益活动",cover:"./images/activities/activity_3_sustainable_xia.png",signups:[
-      {mid:6,role:"v",time:"2026-07-02 10:01"},{mid:7,role:"p",time:"2026-07-02 10:03"},{mid:10,role:"p",time:"2026-07-02 10:05"}]},
-    {id:4,cid:1,name:"流浪动物救助",start:"2026-07-18 10:00",end:"2026-07-18 16:00",capV:2,capP:6,pointsV:60,pointsP:40,desc:"参与流浪动物救助公益行动",cover:"./images/activities/activity_4_stray_animal.png",signups:[
-      {mid:1,role:"v",time:"2026-06-18 11:20"},{mid:3,role:"p",time:"2026-06-18 12:05"},{mid:6,role:"p",time:"2026-06-19 09:33"}]},
-    {id:5,cid:2,name:"\"集美超美\"艺术评比",start:"2026-07-20 14:00",end:"2026-07-20 18:00",capV:2,capP:8,pointsV:45,pointsP:25,desc:"挖掘集美艺术区，作品输出、评比，公区展示、积分表彰",cover:"./images/activities/activity_5_art_jimei.png",signups:[
-      {mid:2,role:"v",time:"2026-06-23 15:10"},{mid:4,role:"p",time:"2026-06-23 15:22"},{mid:7,role:"p",time:"2026-06-24 10:40"}]},
-    {id:6,cid:3,name:"红顶艺术馆参访",start:"2026-07-25 14:00",end:"2026-07-25 17:00",capV:1,capP:5,pointsV:50,pointsP:30,desc:"做客红顶艺术馆，与艺术家近距离接触",cover:"./images/activities/activity_6_hongding_museum.png",signups:[]},
-    {id:7,cid:1,name:"可回收塑料饰品制作",start:"2026-07-28 15:00",end:"2026-07-28 17:00",capV:2,capP:10,pointsV:40,pointsP:20,desc:"用可回收塑料制作钥匙包、包包、手机挂件等",cover:"./images/activities/activity_7_recycle_craft.png",signups:[]},
-    {id:8,cid:2,name:"中药手串制作",start:"2026-07-30 14:00",end:"2026-07-30 16:00",capV:1,capP:8,pointsV:60,pointsP:30,desc:"手工制作中药手串等非遗手作",cover:"./images/activities/activity_8_herb_bracelet.png",signups:[]}
+    {id:1,cid:1,name:"体育理疗健身活动",address:"跑红集团总部 · 3F 健身中心",start:"2026-06-26 19:00",end:"2026-06-26 20:30",capV:1,capP:4,pointsV:80,pointsP:50,desc:"各类体育、理疗型活动，提升员工身体素质；每周五 19:00-20:30",cover:"./images/activities/activity_1_fitness_therapy.png",signups:[
+      {mid:1,role:"v",time:"2026-06-20 10:12"},{mid:3,role:"p",time:"2026-06-22 11:30"},{mid:5,role:"p",time:"2026-06-23 09:15"}]},
+    {id:2,cid:2,name:"流浪动物救助",address:"厦门市流浪动物保护中心",start:"2026-07-05 10:00",end:"2026-07-05 16:00",capV:2,capP:6,pointsV:60,pointsP:40,desc:"参与流浪动物救助公益行动",cover:"./images/activities/activity_4_stray_animal.png",signups:[
+      {mid:1,role:"v",time:"2026-07-01 10:20"},{mid:3,role:"p",time:"2026-07-02 14:00"},{mid:6,role:"p",time:"2026-07-03 09:33"},{mid:11,role:"p",time:"2026-06-30 12:30"}]},
+    {id:3,cid:3,name:"\"集美超美\"艺术评比",address:"集美艺术区 · 中央公区",start:"2026-07-11 14:00",end:"2026-07-11 18:00",capV:2,capP:8,pointsV:45,pointsP:25,desc:"挖掘集美艺术区，作品输出、评比，公区展示、积分表彰",cover:"./images/activities/activity_5_art_jimei.png",signups:[
+      {mid:2,role:"v",time:"2026-07-06 15:10"},{mid:4,role:"p",time:"2026-07-07 10:20"},{mid:7,role:"p",time:"2026-07-08 11:00"}]},
+    {id:4,cid:1,name:"全员\"一起走\"公益",address:"集美市民广场（集合点）",start:"2026-07-15 08:00",end:"2026-07-15 12:00",capV:3,capP:17,pointsV:50,pointsP:30,desc:'<p style="margin:0 0 8px;line-height:1.7">全体员工共同参与的公益行走活动，以行走传递温暖、用脚步守护美好。</p><p style="margin:0 0 12px;color:#909399;font-size:13px">扫描下方长图查看完整活动安排、路线、捐赠等详情 ↓</p><img src="./images/activities/walk_long.png" style="width:100%;border-radius:10px;display:block" alt="活动详情">',cover:"./images/activities/activity_2_walk_for_good.png",signups:[
+      {mid:2,role:"v",time:"2026-07-02 09:11"},{mid:4,role:"p",time:"2026-07-03 09:40"},{mid:8,role:"p",time:"2026-07-05 14:25"},{mid:9,role:"p","time":"2026-07-06 16:08"}]},
+    {id:5,cid:2,name:"\"可持续一厦\"公益",address:"厦门环岛路 · 椰风寨",start:"2026-07-19 09:00",end:"2026-07-19 17:00",capV:1,capP:2,pointsV:40,pointsP:20,desc:"志愿参加\"可持续一厦\"环保公益活动",cover:"./images/activities/activity_3_sustainable_xia.png",signups:[
+      {mid:6,role:"v",time:"2026-07-04 10:01"},{mid:7,role:"p",time:"2026-07-04 10:03"},{mid:10,role:"p",time:"2026-07-05 10:05"}]},
+    {id:6,cid:3,name:"红顶艺术馆参访",address:"红顶艺术馆（湖里区）",start:"2026-07-26 14:00",end:"2026-07-26 17:00",capV:1,capP:5,pointsV:50,pointsP:30,desc:"做客红顶艺术馆，与艺术家近距离接触",cover:"./images/activities/activity_6_hongding_museum.png",signups:[]},
+    {id:7,cid:1,name:"可回收塑料饰品制作",address:"跑红集团总部 · 2F 手作工坊",start:"2026-08-09 15:00",end:"2026-08-09 17:00",capV:2,capP:10,pointsV:40,pointsP:20,desc:"用可回收塑料制作钥匙包、包包、手机挂件等",cover:"./images/activities/activity_7_recycle_craft.png",signups:[]},
+    {id:8,cid:2,name:"中药手串制作",address:"跑红集团总部 · 5F 非遗教室",start:"2026-08-23 14:00",end:"2026-08-23 16:00",capV:1,capP:8,pointsV:60,pointsP:30,desc:"手工制作中药手串等非遗手作",cover:"./images/activities/activity_8_herb_bracelet.png",signups:[]}
   ];
   var gSeq=5, GOODS=[
     {id:1,name:"品牌定制帆布包",points:60,stock:18,exchanged:6,status:"on",img:"./images/goods/canvas_bag.png"},
@@ -1090,7 +1098,7 @@
   });
   window.acOpen=function(){
     acEditing=null; document.getElementById("ac-title").textContent="发布活动";
-    set("ac-name","");set("ac-f-cid","");set("ac-start","");set("ac-end","");set("ac-capv","2");set("ac-capp","10");set("ac-pointsv","40");set("ac-pointsp","20");
+    set("ac-name","");set("ac-f-cid","");set("ac-start","");set("ac-end","");set("ac-capv","2");set("ac-capp","10");set("ac-pointsv","40");set("ac-pointsp","20");set("ac-address","");
     acErrClear(); acCoverSet(""); hmfShowView("actform");
     acDescSet("");
   };
@@ -1098,7 +1106,7 @@
     var a=ACTIVITIES.find(function(x){return x.id===id;}); if(!a)return;
     acEditing=id; document.getElementById("ac-title").textContent="编辑活动";
     set("ac-name",a.name);set("ac-f-cid",String(a.cid));set("ac-start",toLocal(a.start));set("ac-end",toLocal(a.end));
-    set("ac-capv",String(a.capV));set("ac-capp",String(a.capP));set("ac-pointsv",String(a.pointsV));set("ac-pointsp",String(a.pointsP));
+    set("ac-capv",String(a.capV));set("ac-capp",String(a.capP));set("ac-pointsv",String(a.pointsV));set("ac-pointsp",String(a.pointsP));set("ac-address",a.address||"");
     acErrClear(); acCoverSet(a.cover||""); hmfShowView("actform");
     acDescSet(a.desc||"");
   };
@@ -1151,7 +1159,7 @@
     if(!(capV>=0)||!(capP>=0)||capV+capP<1||capV<signedV||capP<signedP){ document.getElementById("ac-row-cap").classList.add("invalid"); ok=false; }
     if(!(pointsV>=0)||!(pointsP>=0)){ document.getElementById("ac-row-points").classList.add("invalid"); ok=false; }
     if(!ok)return;
-    var p={ name:name, cid:parseInt(cid,10), start:s, end:e, capV:capV, capP:capP, pointsV:pointsV, pointsP:pointsP, desc:acDescGet(), cover:acCoverCur };
+    var p={ name:name, cid:parseInt(cid,10), start:s, end:e, address:val("ac-address").trim(), capV:capV, capP:capP, pointsV:pointsV, pointsP:pointsP, desc:acDescGet(), cover:acCoverCur };
     if(acEditing){ Object.assign(ACTIVITIES.find(function(x){return x.id===acEditing;}),p); toast("保存成功"); }
     else{ ACTIVITIES.unshift(Object.assign({id:++aSeq,signups:[]},p)); toast("活动发布成功，可开始报名"); }
     acClose();
@@ -1210,6 +1218,7 @@
     document.getElementById("dt-meta").innerHTML=
       '<div class="dt-meta-row"><label>状态</label><span class="v"><span class="hh-tag '+AC_TAGCLS[st]+'">'+AC_ST[st]+'</span></span></div>'
       +'<div class="dt-meta-row"><label>活动时间</label><span class="v">'+a.start+' ~ '+a.end+'</span></div>'
+      +'<div class="dt-meta-row"><label>活动地址</label><span class="v">'+(a.address? esc(a.address) : '<span style="color:#C0C4CC">未填写</span>')+'</span></div>'
       +'<div class="dt-meta-row"><label>志愿者</label><span class="v">'+rv+'/'+a.capV+'（剩余 '+roleRemain(a,"v")+' 个）<span class="ac-bar"><i style="width:'+pv+'%"></i></span></span></div>'
       +'<div class="dt-meta-row"><label>参与者</label><span class="v">'+rp+'/'+a.capP+'（剩余 '+roleRemain(a,"p")+' 个）<span class="ac-bar"><i style="width:'+pp+'%"></i></span></span></div>'
       +'<div class="dt-meta-row"><label>积分奖励</label><span class="v" style="color:#FF0086;font-weight:600">参与者 +'+a.pointsP+' · 志愿者 +'+a.pointsV+'<span style="color:#909399;font-weight:400;margin-left:6px">报名成功即参加并按角色获得，名额各自先报先得</span></span></div>'
@@ -1217,7 +1226,7 @@
         +(signedByMe(a)
           ?'<button class="hh-btn" disabled style="cursor:not-allowed;color:#C0C4CC;border-color:#EBEEF5">已报名</button>'
           :(canSign
-            ?'<button class="hh-btn hh-btn-primary" onclick="suOpen('+a.id+')">立即报名</button>'
+            ?'<button class="hh-btn hh-btn-primary hh-btn-lg" onclick="suOpen('+a.id+')">立即报名</button>'
             :'<button class="hh-btn" disabled style="cursor:not-allowed;color:#C0C4CC;border-color:#EBEEF5">'+(st==="ended"?"活动已结束":"名额已满")+'</button>'))
       +'</span></div>';
     document.getElementById("dt-desc").innerHTML=(a.desc&&a.desc.trim())? a.desc : '<span style="color:#909399">暂无活动说明</span>';
@@ -1249,9 +1258,6 @@
     if(roleRemain(a,"v")<=0&&roleRemain(a,"p")<=0){ toast("两种角色名额均已满，先报先得，下次手快一点"); acRender(); return; }
     if(a.signups.some(function(s){return s.mid===CURRENT_UID;})){ toast(mname(CURRENT_UID)+" 已报名该活动"); return; }
     suAid=aid; suRole="";
-    document.getElementById("su-info").innerHTML='活动：<b>'+esc(a.name)+'</b><br>'
-      +'报名人：<b>'+esc(mname(CURRENT_UID))+'</b>（当前登录用户）<br>'
-      +'名额各自先报先得，报名成功即视为参加并按角色获得积分';
     suRoleBtnRender(a);
     document.getElementById("su-mask").classList.add("show");
   };

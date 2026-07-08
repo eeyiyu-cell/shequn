@@ -34,9 +34,34 @@
   .quota-box{flex:1;background:#F7F8FA;border-radius:10px;padding:10px 12px;text-align:center;}
   .quota-box .n{font-size:18px;font-weight:600;color:#FF0086;}
   .quota-box .l{font-size:11px;color:#909399;margin-top:2px;}
+  .addr-row{display:flex;align-items:flex-start;gap:6px;font-size:12px;color:#606266;margin-top:8px;line-height:1.5;}
+  .addr-row svg{width:14px;height:14px;color:#FF0086;flex-shrink:0;margin-top:2px;}
+  .addr-row span{flex:1;min-width:0;word-break:break-all;}
+  .quota-compact{margin-top:10px;display:flex;flex-direction:column;gap:8px;}
+  .qc-row{display:flex;align-items:center;gap:10px;font-size:12px;color:#606266;}
+  .qc-name{flex:0 0 56px;color:#909399;}
+  .qc-bar{flex:1;height:6px;background:#F2F3F5;border-radius:999px;overflow:hidden;position:relative;}
+  .qc-bar i{display:block;height:100%;background:linear-gradient(90deg,#ff4d97,#ff0086);border-radius:999px;transition:width .25s;}
+  .qc-bar.full i{background:#DCDFE6;}
+  .qc-total{flex:0 0 auto;font-size:12px;color:#606266;font-variant-numeric:tabular-nums;min-width:42px;text-align:right;}
+  .qc-total b{color:#333;font-weight:600;}
+  .qc-total i{color:#c0c4cc;font-style:normal;margin:0 2px;}
+  .qc-rem{flex:0 0 auto;font-size:11px;color:#909399;font-variant-numeric:tabular-nums;}
+  .qc-rem b{color:#FF0086;font-weight:600;font-size:13px;margin-right:1px;}
   .signer{display:inline-block;padding:0 10px;height:24px;line-height:24px;border-radius:16px;font-size:12px;background:#F2F3F5;color:#606266;margin:0 6px 6px 0;}
   .signer.v{background:#EEF4FF;color:#3A6FE0;}
   .signer.p{background:rgba(255,0,134,.08);color:#FF0086;}
+  .slist{display:flex;flex-direction:column;gap:2px;}
+  .slist-row{display:flex;align-items:center;gap:12px;padding:10px 4px;border-bottom:1px solid #F2F3F5;}
+  .slist-row:last-child{border-bottom:none;}
+  .slist-avatar{flex-shrink:0;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#fff;background:linear-gradient(135deg,#ff7eb6,#ff0086);}
+  .slist-avatar.v{background:linear-gradient(135deg,#7eb3ff,#3A6FE0);}
+  .slist-main{flex:1;min-width:0;}
+  .slist-name{font-size:14px;color:#333;font-weight:500;line-height:1.3;}
+  .slist-time{font-size:11px;color:#a8abb2;margin-top:3px;}
+  .slist-role{flex-shrink:0;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:500;}
+  .slist-role.v{background:#EEF4FF;color:#3A6FE0;}
+  .slist-role.p{background:rgba(255,0,134,.08);color:#FF0086;}
   .btn{display:block;width:100%;height:46px;border:none;border-radius:999px;background:#FF0086;color:#fff;
     font-size:16px;font-weight:500;cursor:pointer;margin-top:12px;font-family:inherit;}
   .btn.plain{background:#fff;color:#FF0086;border:1px solid #FF0086;}
@@ -150,6 +175,35 @@
   .confirm-foot .cf-cancel:active{background:#faf7fa;}
   .confirm-foot .cf-ok{color:#fff;background:linear-gradient(90deg,#ff4d97,#ff0086);font-weight:600;}
   .confirm-foot .cf-ok:active{filter:brightness(.95);}
+  .role-card{width:100%;max-width:320px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 12px 36px rgba(0,0,0,.18);animation:cmPop .18s ease-out;}
+  .role-card .role-head{padding:20px 22px 6px;text-align:center;}
+  .role-card .role-head h3{margin:0 0 4px;font-size:17px;font-weight:600;color:#222;letter-spacing:.5px;}
+  .role-card .role-head p{margin:0;font-size:13px;color:#888;}
+  .role-options{padding:12px 16px 4px;display:flex;flex-direction:column;gap:10px;}
+  .role-opt{position:relative;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:12px;background:#F7F8FA;cursor:pointer;border:1.5px solid transparent;transition:all .15s;}
+  .role-opt:active{transform:scale(.98);}
+  .role-opt.sel{border-color:#FF0086;background:linear-gradient(135deg,#FFF5F9,#FFF);}
+  .role-opt.disabled{opacity:.45;cursor:not-allowed;pointer-events:none;}
+  .role-opt .ro-radio{flex-shrink:0;width:20px;height:20px;border-radius:50%;border:2px solid #DCDFE6;background:#fff;position:relative;transition:all .15s;}
+  .role-opt.sel .ro-radio{border-color:#FF0086;background:#FF0086;}
+  .role-opt.sel .ro-radio::after{content:"";position:absolute;left:5px;top:5px;width:6px;height:6px;border-radius:50%;background:#fff;}
+  .role-opt .ro-body{flex:1;min-width:0;}
+  .role-opt .ro-name{font-size:15px;font-weight:600;color:#222;line-height:1.3;display:flex;align-items:center;gap:6px;}
+  .role-opt .ro-pts{margin-left:auto;padding:3px 9px;border-radius:8px;background:rgba(255,0,134,.08);color:#FF0086;font-size:11px;font-weight:600;letter-spacing:.2px;flex-shrink:0;font-variant-numeric:tabular-nums;}
+  .role-opt .ro-pts i{font-style:normal;font-size:10px;font-weight:500;margin-right:1px;opacity:.75;}
+  .role-opt .ro-meta{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:11px;color:#a8abb2;font-variant-numeric:tabular-nums;}
+  .role-opt .ro-meta b{color:#606266;font-weight:600;}
+  .role-foot{padding:14px 16px 18px;display:flex;gap:10px;}
+  .role-foot button{flex:1;height:44px;border:0;border-radius:999px;font-size:15px;cursor:pointer;font-family:inherit;transition:all .15s;}
+  .role-foot .rf-cancel{background:#F2F3F5;color:#606266;font-weight:500;}
+  .role-foot .rf-cancel:active{background:#E6E8EB;}
+  .role-foot .rf-ok{background:linear-gradient(90deg,#ff4d97,#ff0086);color:#fff;font-weight:600;box-shadow:0 4px 12px rgba(255,0,134,.25);}
+  .role-foot .rf-ok:active{filter:brightness(.95);}
+  .role-foot .rf-ok:disabled{opacity:.4;cursor:not-allowed;box-shadow:none;filter:grayscale(.4);}
+  .act-action-bar{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:480px;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-top:1px solid #F0F1F3;padding:10px 14px calc(12px + env(safe-area-inset-bottom));z-index:30;display:none;box-shadow:0 -4px 16px rgba(0,0,0,.04);}
+  .act-action-bar.show{display:block;}
+  .act-action-bar .ab-pad{height:74px;}
+  .act-action-bar .btn{margin-top:0;}
 </style>
 </head>
 <body>
@@ -169,6 +223,7 @@
   <span class="back" onclick="go('activity')">‹ 返回活动列表</span>
   <div id="act-detail"></div>
 </div>
+<div class="act-action-bar" id="act-action-bar"></div>
 
 <!-- 我的 -->
 <div class="page" id="p-my">
@@ -295,6 +350,19 @@
     </div>
   </div>
 </div>
+<div class="confirm-mask" id="role-mask" onclick="if(event.target===this)hideRolePick()">
+  <div class="role-card">
+    <div class="role-head">
+      <h3>选择报名身份</h3>
+      <p>请选择以哪种身份参加本次活动</p>
+    </div>
+    <div class="role-options" id="role-options"></div>
+    <div class="role-foot">
+      <button class="rf-cancel" onclick="hideRolePick()">取消</button>
+      <button class="rf-ok" id="rf-ok" disabled onclick="confirmRolePick()">确认报名</button>
+    </div>
+  </div>
+</div>
 <script>
 (function(){
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
@@ -314,14 +382,14 @@
   var GD_PAL=[["#FF7AA2","#FF0086"],["#FFB26B","#FF5E8A"],["#9D7BFF","#FF6FB5"],["#36D1C4","#2E86FF"],["#FFC53D","#FF7A45"]];
 
   var ACTIVITIES=[
-    {id:1,name:"体育理疗健身活动",start:"2026-07-10 19:00",end:"2026-07-10 20:30",capV:1,capP:4,pointsV:80,pointsP:50,desc:"各类体育、理疗型活动，提升员工身体素质；每周五 19:00-20:30",cover:"./images/activities/activity_1_fitness_therapy.png",signups:[{mid:1,role:"v",time:"2026-07-01 10:12"},{mid:3,role:"p",time:"2026-07-01 10:30"},{mid:11,role:"p",time:"2026-07-05 12:00"}]},
-    {id:2,name:"全员\"一起走\"公益",start:"2026-07-12 08:00",end:"2026-07-12 12:00",capV:3,capP:17,pointsV:50,pointsP:30,desc:"全体员工共同参与的公益行走活动",cover:"./images/activities/activity_2_walk_for_good.png",signups:[{mid:2,role:"v",time:"2026-06-28 09:11"},{mid:4,role:"p",time:"2026-06-28 09:40"},{mid:8,role:"p",time:"2026-06-29 14:25"},{mid:9,role:"p",time:"2026-06-30 16:08"}]},
-    {id:3,name:"\"可持续一厦\"公益",start:"2026-07-15 09:00",end:"2026-07-15 17:00",capV:1,capP:2,pointsV:40,pointsP:20,desc:"志愿参加\"可持续一厦\"环保公益活动",cover:"./images/activities/activity_3_sustainable_xia.png",signups:[{mid:6,role:"v",time:"2026-07-02 10:01"},{mid:7,role:"p",time:"2026-07-02 10:03"},{mid:10,role:"p",time:"2026-07-02 10:05"}]},
-    {id:4,name:"流浪动物救助",start:"2026-06-18 10:00",end:"2026-06-18 16:00",capV:2,capP:6,pointsV:60,pointsP:40,desc:"参与流浪动物救助公益行动",cover:"./images/activities/activity_4_stray_animal.png",signups:[{mid:1,role:"v",time:"2026-06-18 11:20"},{mid:3,role:"p",time:"2026-06-18 12:05"},{mid:6,role:"p",time:"2026-06-19 09:33"},{mid:11,role:"p",time:"2026-06-15 12:30"}]},
-    {id:5,name:"\"集美超美\"艺术评比",start:"2026-06-20 14:00",end:"2026-06-20 18:00",capV:2,capP:8,pointsV:45,pointsP:25,desc:"挖掘集美艺术区，作品输出、评比，公区展示、积分表彰",cover:"./images/activities/activity_5_art_jimei.png",signups:[{mid:2,role:"v",time:"2026-06-23 15:10"},{mid:4,role:"p",time:"2026-06-23 15:22"},{mid:7,role:"p",time:"2026-06-24 10:40"}]},
-    {id:6,name:"红顶艺术馆参访",start:"2026-07-25 14:00",end:"2026-07-25 17:00",capV:1,capP:5,pointsV:50,pointsP:30,desc:"做客红顶艺术馆，与艺术家近距离接触",cover:"./images/activities/activity_6_hongding_museum.png",signups:[]},
-    {id:7,name:"可回收塑料饰品制作",start:"2026-07-28 15:00",end:"2026-07-28 17:00",capV:2,capP:10,pointsV:40,pointsP:20,desc:"用可回收塑料制作钥匙包、包包、手机挂件等",cover:"./images/activities/activity_7_recycle_craft.png",signups:[]},
-    {id:8,name:"中药手串制作",start:"2026-07-30 14:00",end:"2026-07-30 16:00",capV:1,capP:8,pointsV:60,pointsP:30,desc:"手工制作中药手串等非遗手作",cover:"./images/activities/activity_8_herb_bracelet.png",signups:[]}
+    {id:1,name:"体育理疗健身活动",start:"2026-07-10 19:00",end:"2026-07-10 20:30",address:"跑红集团总部 · 3F 健身中心",capV:1,capP:4,pointsV:80,pointsP:50,desc:"各类体育、理疗型活动，提升员工身体素质；每周五 19:00-20:30",cover:"./images/activities/activity_1_fitness_therapy.png",signups:[{mid:1,role:"v",time:"2026-07-01 10:12"},{mid:3,role:"p",time:"2026-07-01 10:30"},{mid:11,role:"p",time:"2026-07-05 12:00"}]},
+    {id:2,name:"全员\"一起走\"公益",start:"2026-07-12 08:00",end:"2026-07-12 12:00",address:"集美市民广场（集合点）",capV:3,capP:17,pointsV:50,pointsP:30,desc:'<p style="margin:0 0 8px;line-height:1.7">全体员工共同参与的公益行走活动，以行走传递温暖、用脚步守护美好。</p><p style="margin:0 0 12px;color:#909399;font-size:13px">扫描下方长图查看完整活动安排、路线、捐赠等详情 ↓</p><img src="./images/activities/walk_long.png" style="width:100%;border-radius:10px;display:block" alt="活动详情">',cover:"./images/activities/activity_2_walk_for_good.png",signups:[{mid:2,role:"v",time:"2026-06-28 09:11"},{mid:4,role:"p",time:"2026-06-28 09:40"},{mid:8,role:"p",time:"2026-06-29 14:25"},{mid:9,role:"p",time:"2026-06-30 16:08"}]},
+    {id:3,name:"\"可持续一厦\"公益",start:"2026-07-15 09:00",end:"2026-07-15 17:00",address:"厦门环岛路 · 椰风寨",capV:1,capP:2,pointsV:40,pointsP:20,desc:"志愿参加\"可持续一厦\"环保公益活动",cover:"./images/activities/activity_3_sustainable_xia.png",signups:[{mid:6,role:"v",time:"2026-07-02 10:01"},{mid:7,role:"p",time:"2026-07-02 10:03"},{mid:10,role:"p",time:"2026-07-02 10:05"}]},
+    {id:4,name:"流浪动物救助",start:"2026-06-18 10:00",end:"2026-06-18 16:00",address:"厦门市流浪动物保护中心",capV:2,capP:6,pointsV:60,pointsP:40,desc:"参与流浪动物救助公益行动",cover:"./images/activities/activity_4_stray_animal.png",signups:[{mid:1,role:"v",time:"2026-06-18 11:20"},{mid:3,role:"p",time:"2026-06-18 12:05"},{mid:6,role:"p",time:"2026-06-19 09:33"},{mid:11,role:"p",time:"2026-06-15 12:30"}]},
+    {id:5,name:"\"集美超美\"艺术评比",start:"2026-06-20 14:00",end:"2026-06-20 18:00",address:"集美艺术区 · 中央公区",capV:2,capP:8,pointsV:45,pointsP:25,desc:"挖掘集美艺术区，作品输出、评比，公区展示、积分表彰",cover:"./images/activities/activity_5_art_jimei.png",signups:[{mid:2,role:"v",time:"2026-06-23 15:10"},{mid:4,role:"p",time:"2026-06-23 15:22"},{mid:7,role:"p",time:"2026-06-24 10:40"}]},
+    {id:6,name:"红顶艺术馆参访",start:"2026-07-25 14:00",end:"2026-07-25 17:00",address:"红顶艺术馆（湖里区）",capV:1,capP:5,pointsV:50,pointsP:30,desc:"做客红顶艺术馆，与艺术家近距离接触",cover:"./images/activities/activity_6_hongding_museum.png",signups:[]},
+    {id:7,name:"可回收塑料饰品制作",start:"2026-07-28 15:00",end:"2026-07-28 17:00",address:"跑红集团总部 · 2F 手作工坊",capV:2,capP:10,pointsV:40,pointsP:20,desc:"用可回收塑料制作钥匙包、包包、手机挂件等",cover:"./images/activities/activity_7_recycle_craft.png",signups:[]},
+    {id:8,name:"中药手串制作",start:"2026-07-30 14:00",end:"2026-07-30 16:00",address:"跑红集团总部 · 5F 非遗教室",capV:1,capP:8,pointsV:60,pointsP:30,desc:"手工制作中药手串等非遗手作",cover:"./images/activities/activity_8_herb_bracelet.png",signups:[]}
   ];
   var GOODS=[
     {id:1,name:"品牌定制帆布包",points:60,stock:18,status:"on",img:"./images/goods/canvas_bag.png"},
@@ -396,6 +464,8 @@
       document.getElementById("p-"+k).classList.toggle("active",k===id);
     });
     var _tb=document.getElementById("topbar"); if(_tb) _tb.textContent=TOPBAR[id]||"跑红+ 社群";
+    var _bar=document.getElementById("act-action-bar");
+    if(_bar) _bar.classList.toggle("show",id==="detail");
     document.getElementById("nav").style.display=NAV_HIDE[id]?"none":"flex";
     ["notice","system","activity","my"].forEach(function(k){
       document.getElementById("nav-"+k).classList.toggle("active",k===id);
@@ -423,10 +493,18 @@
     if(!rows.length){ el.innerHTML='<div class="empty">暂无活动</div>'; return; }
     el.innerHTML=rows.map(function(a){
       var st=aStatus(a);
+      var cp=roleCount(a,"p"), cv=roleCount(a,"v");
+      var rp=roleRemain(a,"p"), rv=roleRemain(a,"v");
+      var pp=Math.min(100, Math.round(cp/a.capP*100));
+      var vp=Math.min(100, Math.round(cv/a.capV*100));
+      var quotaHtml='<div class="quota-compact">'
+        +'<div class="qc-row"><span class="qc-name">参与者</span><div class="qc-bar'+(rp<=0?" full":"")+'"><i style="width:'+pp+'%"></i></div><span class="qc-total">'+cp+'/'+a.capP+'</span></div>'
+        +'<div class="qc-row"><span class="qc-name">志愿者</span><div class="qc-bar'+(rv<=0?" full":"")+'"><i style="width:'+vp+'%"></i></div><span class="qc-total">'+cv+'/'+a.capV+'</span></div>'
+        +'</div>';
       return '<div class="card" onclick="openAct('+a.id+')"><img src="'+acImg(a)+'" alt="'+esc(a.name)+'">'
         +'<div class="card-bd"><div class="card-title">'+esc(a.name)+'</div>'
-        +'<div class="card-meta"><span class="tag'+(st==="ended"||st==="full"?" gray":"")+'">'+AC_ST[st]+'</span>'
-        +'<span class="points">参与者 +'+a.pointsP+'</span> · <span class="points">志愿者 +'+a.pointsV+'</span><br>'+a.start+' ~ '+a.end+'</div></div></div>';
+        +'<div class="card-meta"><span class="tag'+(st==="ended"||st==="full"?" gray":"")+'">'+AC_ST[st]+'</span>'+a.start+' ~ '+a.end+'</div>'
+        +quotaHtml+'</div></div>';
     }).join("");
   }
   window.myTab=function(k){
@@ -439,28 +517,99 @@
   function renderDetail(id){
     var a=ACTIVITIES.find(function(x){return x.id===id;}); if(!a)return;
     var st=aStatus(a), mine=signedByMe(a);
-    var btns="";
+    var btns;
     if(mine) btns='<button class="btn" disabled>已报名（'+ROLE_LABEL[myRole(a)]+'）</button>';
     else if(st==="ended") btns='<button class="btn" disabled>活动已结束</button>';
-    else{
-      if(roleRemain(a,"p")>0) btns+='<button class="btn" onclick="signAct('+a.id+',\'p\')">以参与者报名（+'+a.pointsP+' 积分）</button>';
-      if(roleRemain(a,"v")>0) btns+='<button class="btn plain" onclick="signAct('+a.id+',\'v\')">以志愿者报名（+'+a.pointsV+' 积分）</button>';
-      if(!btns) btns='<button class="btn" disabled>名额已满</button>';
-    }
-    var signers=a.signups.length? a.signups.map(function(s){return '<span class="signer '+s.role+'">'+esc(mname(s.mid))+' · '+ROLE_LABEL[s.role]+'</span>';}).join("") : '<span style="color:#909399">暂无人报名</span>';
+    else if(roleRemain(a,"p")<=0 && roleRemain(a,"v")<=0) btns='<button class="btn" disabled>名额已满</button>';
+    else btns='<button class="btn" onclick="showRolePick('+a.id+')">报名</button>';
+    var signers=a.signups.length? '<div class="slist">'+a.signups.map(function(s){
+      var nm=esc(mname(s.mid));
+      var ini=nm.substr(nm.length-1);
+      return '<div class="slist-row">'
+        +'<div class="slist-avatar '+s.role+'">'+ini+'</div>'
+        +'<div class="slist-main"><div class="slist-name">'+nm+'</div><div class="slist-time">'+s.time+'</div></div>'
+        +'<span class="slist-role '+s.role+'">'+ROLE_LABEL[s.role]+'</span>'
+      +'</div>';
+    }).join("")+'</div>' : '<div style="color:#909399;padding:8px 4px;">暂无人报名</div>';
     var photos=(a.photos&&a.photos.length)? '<div class="sec"><h4>活动照片（'+a.photos.length+'）</h4><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">'
       +a.photos.map(function(p,i){return '<div><img src="'+photoImg(a.name,a.id*10+i)+'" style="width:100%;height:100px;object-fit:cover;border-radius:8px;display:block;margin:0;"><div style="font-size:11px;color:#909399;margin-top:4px;"><b style="color:#333">'+esc(p.who)+'</b> · '+p.time+'</div></div>';}).join("")+'</div></div>' : '';
+    var descHtml=((a.desc&&a.desc.trim())?a.desc:'<span style="color:#909399">暂无</span>');
+    var addrHtml=(a.address&&a.address.trim())
+      ? '<div class="addr-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>'+esc(a.address)+'</span></div>'
+      : '';
+    var cp=roleCount(a,"p"), cv=roleCount(a,"v");
+    var rp=roleRemain(a,"p"), rv=roleRemain(a,"v");
+    var pp=Math.min(100, Math.round(cp/a.capP*100));
+    var vp=Math.min(100, Math.round(cv/a.capV*100));
+    var quotaHtml='<div class="quota-compact">'
+      +'<div class="qc-row"><span class="qc-name">参与者</span><div class="qc-bar'+(rp<=0?" full":"")+'"><i style="width:'+pp+'%"></i></div><span class="qc-total">'+cp+'/'+a.capP+'</span></div>'
+      +'<div class="qc-row"><span class="qc-name">志愿者</span><div class="qc-bar'+(rv<=0?" full":"")+'"><i style="width:'+vp+'%"></i></div><span class="qc-total">'+cv+'/'+a.capV+'</span></div>'
+      +'</div>';
     document.getElementById("act-detail").innerHTML=
       '<div class="card" style="cursor:default"><img src="'+acImg(a)+'" alt="">'
       +'<div class="card-bd"><div class="card-title">'+esc(a.name)+'</div>'
       +'<div class="card-meta"><span class="tag'+(st==="ended"||st==="full"?" gray":"")+'">'+AC_ST[st]+'</span>'+a.start+' ~ '+a.end+'</div>'
-      +'<div class="quota"><div class="quota-box"><div class="n">'+roleCount(a,"p")+'/'+a.capP+'</div><div class="l">参与者 · 剩 '+roleRemain(a,"p")+'（+'+a.pointsP+'）</div></div>'
-      +'<div class="quota-box"><div class="n">'+roleCount(a,"v")+'/'+a.capV+'</div><div class="l">志愿者 · 剩 '+roleRemain(a,"v")+'（+'+a.pointsV+'）</div></div></div></div></div>'
-      +'<div class="sec"><h4>活动说明</h4>'+((a.desc&&a.desc.trim())?a.desc:'<span style="color:#909399">暂无</span>')+'</div>'
+      +addrHtml
+      +quotaHtml
+      +'</div></div>'
       +photos
-      +'<div class="sec"><h4>报名名单（'+a.signups.length+'）</h4>'+signers+'</div>'
-      +btns;
+      +'<div class="subtabs">'
+        +'<div class="subtab active" id="dt-desc-tab" onclick="detailTab(\'desc\')">活动说明</div>'
+        +'<div class="subtab" id="dt-signers-tab" onclick="detailTab(\'signers\')">报名名单（'+a.signups.length+'）</div>'
+      +'</div>'
+      +'<div class="sec" id="dt-desc">'+descHtml+'</div>'
+      +'<div class="sec" id="dt-signers" style="display:none;">'+signers+'</div>'
+      +'<div class="ab-pad"></div>';
+    var bar=document.getElementById("act-action-bar");
+    bar.innerHTML=btns;
+    bar.classList.add("show");
   }
+  window.detailTab=function(k){
+    ["desc","signers"].forEach(function(t){
+      document.getElementById("dt-"+t+"-tab").classList.toggle("active",t===k);
+      document.getElementById("dt-"+t).style.display=(t===k)?"block":"none";
+    });
+  };
+  var rolePickedId=null, rolePickedRole=null;
+  window.showRolePick=function(id){
+    var a=ACTIVITIES.find(function(x){return x.id===id;}); if(!a)return;
+    var remP=roleRemain(a,"p"), remV=roleRemain(a,"v");
+    rolePickedId=id; rolePickedRole=null;
+    var html="";
+    html+='<div class="role-opt" id="ro-p" data-role="p" onclick="pickRole(\'p\')">'
+      +'<div class="ro-radio"></div>'
+      +'<div class="ro-body"><div class="ro-name">参与者</div>'
+      +'<div class="ro-meta">剩 <b>'+remP+'</b> 个名额</div></div>'
+      +'<div class="ro-pts"><i>+</i>'+a.pointsP+' 积分</div></div>';
+    html+='<div class="role-opt" id="ro-v" data-role="v" onclick="pickRole(\'v\')">'
+      +'<div class="ro-radio"></div>'
+      +'<div class="ro-body"><div class="ro-name">志愿者</div>'
+      +'<div class="ro-meta">剩 <b>'+remV+'</b> 个名额</div></div>'
+      +'<div class="ro-pts"><i>+</i>'+a.pointsV+' 积分</div></div>';
+    document.getElementById("role-options").innerHTML=html;
+    if(remP<=0) document.getElementById("ro-p").classList.add("disabled");
+    if(remV<=0) document.getElementById("ro-v").classList.add("disabled");
+    document.getElementById("rf-ok").disabled=true;
+    document.getElementById("role-mask").classList.add("show");
+  };
+  window.pickRole=function(r){
+    var el=document.getElementById("ro-"+r);
+    if(!el || el.classList.contains("disabled")) return;
+    ["p","v"].forEach(function(k){
+      var n=document.getElementById("ro-"+k);
+      if(n) n.classList.toggle("sel",k===r);
+    });
+    rolePickedRole=r;
+    document.getElementById("rf-ok").disabled=false;
+  };
+  window.confirmRolePick=function(){
+    if(!rolePickedId || !rolePickedRole) return;
+    signAct(rolePickedId, rolePickedRole);
+    hideRolePick();
+  };
+  window.hideRolePick=function(){
+    document.getElementById("role-mask").classList.remove("show");
+  };
   window.signAct=function(id,r){
     var a=ACTIVITIES.find(function(x){return x.id===id;}); if(!a)return;
     if(signedByMe(a)){ toast(mname(CUR)+" 已报名该活动"); renderDetail(id); return; }
@@ -468,7 +617,7 @@
     var t=nowStr();
     a.signups.push({mid:CUR,role:r,time:t});
     RECORDS.push({id:++rSeq,mid:CUR,type:"gain",points:rolePoints(a,r),reason:"参加活动（"+ROLE_LABEL[r]+"）："+a.name,time:t});
-    toast("报名成功，获得 "+rolePoints(a,r)+" 积分");
+    toast("报名成功");
     renderDetail(id); renderActList();
   };
 
