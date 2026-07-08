@@ -9,8 +9,6 @@
   body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     background:linear-gradient(135deg,#e1eef7 0%,#efebf6 24%,#efe9f3 33%,#f7eff4 39%,#f6eff5 47%,#f1ebfa 55%,#efeffc 69%,#eef1ff 78%,#f3eaf8 88%,#fbeaf6 100%);
     color:#303133;max-width:480px;margin:0 auto;min-height:100vh;padding-bottom:60px;}
-  .top{position:sticky;top:0;z-index:10;height:50px;background:linear-gradient(to right,#bce0f8,#eba8d1);color:#fff;
-    display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:600;letter-spacing:1px;box-shadow:0 2px 10px rgba(173,92,135,.12);}
   .page{display:none;padding:12px;}
   .page.active{display:block;}
   .tip{font-size:12px;color:#909399;margin:2px 4px 12px;}
@@ -62,10 +60,10 @@
   .slist-role{flex-shrink:0;padding:3px 10px;border-radius:999px;font-size:11px;font-weight:500;}
   .slist-role.v{background:#EEF4FF;color:#3A6FE0;}
   .slist-role.p{background:rgba(255,0,134,.08);color:#FF0086;}
-  .btn{display:block;width:100%;height:46px;border:none;border-radius:999px;background:#FF0086;color:#fff;
-    font-size:16px;font-weight:500;cursor:pointer;margin-top:12px;font-family:inherit;}
-  .btn.plain{background:#fff;color:#FF0086;border:1px solid #FF0086;}
-  .btn:disabled{background:#DCDFE6;color:#fff;cursor:not-allowed;}
+  .btn{display:block;width:100%;height:46px;border:none;border-radius:999px;background:linear-gradient(90deg,#ffb39e,#ff0086);color:#fff;
+    font-size:16px;font-weight:500;cursor:pointer;margin-top:12px;font-family:inherit;box-shadow:0 6px 16px rgba(255,128,160,.28);}
+  .btn.plain{background:#fff;color:#FF0086;border:1px solid #FFC2D9;box-shadow:none;}
+  .btn:disabled{background:#DCDFE6;color:#fff;cursor:not-allowed;box-shadow:none;}
   .empty{text-align:center;color:#909399;padding:40px 0;font-size:14px;}
   /* 我的页（高级感） */
   .my-hero{background:transparent;padding:24px 16px 18px;text-align:center;margin:-12px -12px 6px;}
@@ -457,13 +455,11 @@
   }
 
   /* ===== 页面切换 ===== */
-  var TOPBAR={notice:"公告",system:"制度",activity:"跑红+ 社群活动",detail:"活动详情",my:"我的",records:"积分明细",rank:"积分排行榜",gifts:"积分兑换",orders:"礼品订单"};
   var NAV_HIDE={detail:1,records:1,rank:1,gifts:1,orders:1};
   window.go=function(id){
     ["notice","system","activity","detail","my","records","rank","gifts","orders"].forEach(function(k){
       document.getElementById("p-"+k).classList.toggle("active",k===id);
     });
-    var _tb=document.getElementById("topbar"); if(_tb) _tb.textContent=TOPBAR[id]||"跑红+ 社群";
     var _bar=document.getElementById("act-action-bar");
     if(_bar) _bar.classList.toggle("show",id==="detail");
     document.getElementById("nav").style.display=NAV_HIDE[id]?"none":"flex";

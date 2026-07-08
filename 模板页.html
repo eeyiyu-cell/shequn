@@ -87,6 +87,7 @@
       <div>
         <div class="hh-title">社群活动</div>
       </div>
+      <button class="hh-btn" onclick="acPubAll()" style="background:#FFF6E9;color:#C98A2B;border:1px solid #FBE3B6">📢 批量发布草稿</button>
       <button class="hh-btn hh-btn-primary" onclick="acOpen()">＋ 发布活动</button>
     </div>
     <div class="hh-toolbar">
@@ -99,6 +100,12 @@
         <option value="running">进行中</option>
         <option value="ended">已结束</option>
       </select>
+      <select id="ac-pub" class="hh-ipt" style="width:130px">
+        <option value="">全部发布状态</option>
+        <option value="pub">已发布</option>
+        <option value="draft">未发布</option>
+        <option value="off">已下线</option>
+      </select>
       <button class="hh-btn hh-btn-primary" onclick="acApply()">查询</button>
       <button class="hh-btn" onclick="acReset()">重置</button>
     </div>
@@ -107,10 +114,11 @@
         <tr>
           <th style="width:110px">封面</th>
           <th style="width:200px">活动名称</th>
-          <th style="width:290px">活动时间</th>
+          <th style="width:260px">活动时间</th>
           <th style="width:160px">报名情况</th>
+          <th style="width:90px">发布状态</th>
           <th style="width:80px">状态</th>
-          <th style="width:250px">操作</th>
+          <th style="width:280px">操作</th>
         </tr>
       </thead>
       <tbody id="ac-tbody"></tbody>
@@ -670,6 +678,7 @@
   .hh-tag.cost{background:#FFF0F0;color:#E5484D;}
   .hh-tag.on{background:#FFF5FB;color:#FF0086;}
   .hh-tag.off{background:#F4F4F5;color:#909399;}
+  .hh-tag.warn{background:#FFF6E9;color:#C98A2B;}
   .su-info{background:#F2F3F5;border-radius:8px;padding:10px 14px;font-size:13px;color:#606266;margin-bottom:16px;line-height:1.8;}
   /* 报名角色大选项按钮 */
   .su-roles{display:flex;gap:12px;}
@@ -729,7 +738,20 @@
 </style>
 </main></section></section><div class="el-overlay" style="z-index: 2018; display: none;"><div role="dialog" aria-modal="true" aria-label="修改密码" aria-describedby="el-id-320-41" class="el-overlay-dialog"></div></div><div class="el-overlay" style="z-index: 2019; display: none;"><div role="dialog" aria-modal="true" aria-label="暂存车" aria-describedby="el-id-320-43" class="el-overlay-dialog"></div></div><!----><div data-v-fbe6bf34="" id="myModelDiv"><div class="el-overlay modelClass" style="z-index: 2020; display: none;"><div role="dialog" aria-modal="true" aria-labelledby="el-id-320-44" aria-describedby="el-id-320-45" class="el-overlay-dialog"></div></div></div><!----><!----><!----></div><svg id="__svg__icons__dom__" xmlns="http://www.w3.org/2000/svg" xmlns:link="http://www.w3.org/1999/xlink" style="position: absolute; width: 0px; height: 0px;"><symbol class="icon" viewBox="0 0 1024 1024" id="icon-editPwd"><path d="M829.838 409.6H369.38V239.104a146.773 146.773 0 0 1 153.486-119.296 146.773 146.773 0 0 1 153.543 119.296v51.086h.796a59.676 59.676 0 0 0 118.159 0h.74v-51.086A257.48 257.48 0 0 0 523.263.569a257.48 257.48 0 0 0-272.84 238.649V409.6h-34.132a102.4 102.4 0 0 0-102.514 102.457v409.486A102.4 102.4 0 0 0 216.235 1024h614.001a102.4 102.4 0 0 0 102.457-102.457V512a103.253 103.253 0 0 0-102.855-102.514zM573.895 787.342v46.535a51.2 51.2 0 1 1-102.457 0v-46.535a119.182 119.182 0 1 1 102.457 0z"></path></symbol><symbol class="icon" viewBox="0 0 1024 1024" id="icon-jiaocheng"><path d="M486.116 0v312.32a52.964 52.964 0 0 0 8.988 29.014l3.129 4.38c8.76 11.378 22.357 18.261 36.92 18.603l5.974-.398a49.209 49.209 0 0 0 17.067-5.405l92.046-50.346 91.99 50.062c7.053 3.982 14.961 6.087 23.04 6.03l5.517-.455a50.631 50.631 0 0 0 43.463-51.086V0h6.94a145.92 145.92 0 0 1 145.92 145.92v732.16A145.92 145.92 0 0 1 821.19 1024H259.699a145.92 145.92 0 0 1-145.92-145.92V145.92l.228-8.02A145.92 145.92 0 0 1 259.698 0h226.418zm259.413 0v274.774l-95.29-52.054-95.288 52.054V0H745.53z"></path></symbol><symbol class="icon" viewBox="0 0 1024 1024" id="icon-shuaxin"><path d="M998.907 555.23c-9.671 52.678-25.43 103.991-47.104 153.03-70.541 154.053-191.144 234.948-361.582 242.57a594.028 594.028 0 0 1-229.032-33.905v-1.024l-31.857 80.1a55.864 55.864 0 0 1-20.537 22.584 40.106 40.106 0 0 1-21.106 5.404 51.2 51.2 0 0 1-19.512-5.404 95.345 95.345 0 0 1-13.369-7.168 52.394 52.394 0 0 1-5.404-4.665L87.727 733.119a57.514 57.514 0 0 1-7.168-21.56 46.99 46.99 0 0 1 1.024-17.465 36.01 36.01 0 0 1 7.168-13.369 74.524 74.524 0 0 1 10.297-10.297c3.47-2.844 7.225-5.347 11.264-7.395a50.517 50.517 0 0 1 8.192-3.584 6.2 6.2 0 0 0 3.072-1.82l281.483-74.98c11.719-3.242 23.893-4.095 35.953-2.56 7.566 1.423 15.019 3.585 22.187 6.372a21.618 21.618 0 0 1 12.401 12.345 76.568 76.568 0 0 1 4.608 14.905 47.73 47.73 0 0 1 0 14.393 55.239 55.239 0 0 1-2.048 10.808 10.809 10.809 0 0 0-1.024 3.584l-32.881 80.099a678.677 678.677 0 0 0 164.52 39.594c51.712 5.12 95.687 3.982 132.039-3.64a359.079 359.079 0 0 0 101.204-36.978 381.891 381.891 0 0 0 74.068-50.801 353.276 353.276 0 0 0 48.81-55.466c9.785-13.369 18.774-27.25 26.909-41.643 3.811-7.509 6.713-13.653 8.76-18.488h.342zM56.894 450.44a686.812 686.812 0 0 1 63.715-176.808C199.342 131.98 324.326 62.748 495.502 66.16a573.397 573.397 0 0 1 207.529 40.106l33.905-79.074c4.153-6.827 9.387-12.857 15.36-17.977A37.717 37.717 0 0 1 767.77.967a47.672 47.672 0 0 1 28.273 3.072 103.082 103.082 0 0 1 17.977 10.809l3.072 3.015L972.226 295.25a83.264 83.264 0 0 1 6.144 22.756 47.047 47.047 0 0 1-1.024 17.464 32.37 32.37 0 0 1-7.737 13.369 69.404 69.404 0 0 1-22.072 16.498l-8.25 4.039a7.111 7.111 0 0 1-3.071 1.024l-283.474 67.697a113.12 113.12 0 0 1-46.25-1.024c-11.549-3.414-19.172-8.078-22.585-13.881a41.244 41.244 0 0 1-5.348-21.049 97.393 97.393 0 0 1 1.252-17.521 24.462 24.462 0 0 1 3.072-8.25l34.702-79.074a664.853 664.853 0 0 0-164.407-43.121c-52.053-6.144-96.085-6.144-131.981 0a348.782 348.782 0 0 0-101.489 33.905 369.205 369.205 0 0 0-75.49 49.322 383.996 383.996 0 0 0-50.347 54.443c-10.41 13.084-20.025 26.85-28.785 41.073a113.208 113.208 0 0 0-8.192 17.521z"></path></symbol><symbol class="icon" viewBox="0 0 1024 1024" id="icon-updateLog"><path d="M837.632 0H367.616C196.722 0 56.889 139.833 56.889 310.727V867.1a129.82 129.82 0 0 0 129.479 129.423h471.495c170.098 0 309.248-139.15 309.248-309.248V129.479A129.82 129.82 0 0 0 837.632 0zM548.807 718.165H278.983a33.906 33.906 0 1 1 0-67.868h269.824a33.906 33.906 0 1 1 0 67.868zm179.883-189.61H278.983a33.906 33.906 0 1 1 0-67.869H728.69a33.906 33.906 0 1 1 0 67.869zm0-189.554H278.983a33.906 33.906 0 1 1 0-67.925H728.69a33.906 33.906 0 1 1 0 67.925z"></path></symbol></svg><div id="el-popper-container-320"><div class="el-popper is-light el-popover userInfoPopover" tabindex="-1" aria-hidden="true" role="tooltip" id="el-id-320-0" data-popper-reference-hidden="false" data-popper-escaped="false" data-popper-placement="bottom" style="z-index: 2001; position: absolute; inset: 56.8px auto auto 1432.8px; width: 338px; display: none;"><!--v-if--><div data-v-fbe6bf34="" class="userInfo_box" style="text-align: center;"><div data-v-fbe6bf34="" class="userInfo"><div data-v-fbe6bf34="" class="userImg"><span data-v-fbe6bf34="" class="el-avatar el-avatar--circle" style="position: relative; cursor: pointer; width: 52px; height: 52px;"><img src="./红魔方_files/avatar.png" style="object-fit: cover;"></span></div><div data-v-fbe6bf34="" class="userInfoText"><div data-v-fbe6bf34="" class="userInfo_name"><div data-v-fbe6bf34="" class="userInfo_name_text">白小白</div><div data-v-fbe6bf34="" class="userJob"><img data-v-fbe6bf34="" src="data:image/png;base64,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" style="cursor: pointer; width: 18px; height: 18px; top: 3px;"><span data-v-fbe6bf34="" style="top: -2px; margin-left: 3px;">专家组</span></div></div><div data-v-fbe6bf34="" class="userInfo_group">信息化中心-技术部</div></div></div><div data-v-fbe6bf34="" class="btn_box"><div data-v-fbe6bf34="" class="btn_item"><i data-v-7b1230c3="" data-v-fbe6bf34="" class="el-icon svgIcon" style="font-size: 18px;"><svg data-v-7b1230c3="" aria-hidden="true"><use data-v-7b1230c3="" xlink:href="#icon-updateLog" rel="external nofollow" fill=""></use></svg></i>更新日志 </div><div data-v-fbe6bf34="" class="btn_item"><i data-v-7b1230c3="" data-v-fbe6bf34="" class="el-icon svgIcon" style="font-size: 18px;"><svg data-v-7b1230c3="" aria-hidden="true"><use data-v-7b1230c3="" xlink:href="#icon-editPwd" rel="external nofollow" fill=""></use></svg></i>修改密码 </div><div data-v-fbe6bf34="" class="btn_item"><i data-v-7b1230c3="" data-v-fbe6bf34="" class="el-icon svgIcon" style="font-size: 18px;"><svg data-v-7b1230c3="" aria-hidden="true"><use data-v-7b1230c3="" xlink:href="#icon-shuaxin" rel="external nofollow" fill=""></use></svg></i>刷新网络 <span data-v-fbe6bf34="" class="el-tag el-tag--primary el-tag--light" style="top: -2px; margin-left: 8px; padding: 0px 6px;"><span class="el-tag__content">外网</span><!--v-if--></span></div><div data-v-fbe6bf34="" class="btn_item"><i data-v-7b1230c3="" data-v-fbe6bf34="" class="el-icon svgIcon" style="font-size: 18px;"><svg data-v-7b1230c3="" aria-hidden="true"><use data-v-7b1230c3="" xlink:href="#icon-jiaocheng" rel="external nofollow" fill=""></use></svg></i>使用教程 </div></div><div data-v-fbe6bf34="" class="login_btn">退出登录</div></div><span class="el-popper__arrow" data-popper-arrow="" style="position: absolute; left: 0px;"></span></div><div class="el-popper is-light el-popover popover_layout" tabindex="-1" aria-hidden="true" role="tooltip" id="el-id-320-1388" data-popper-reference-hidden="false" data-popper-escaped="false" data-popper-placement="bottom" style="z-index: 2053; position: absolute; inset: 193.6px auto auto 311.2px; width: 410px; display: none;"><!--v-if--><div data-v-23889266="" style="padding: 10px 20px;"><div data-v-23889266="" class="el-input el-input--small el-input--suffix" style="width: 100%; margin-bottom: 10px; height: 30px;"><!-- input --><!-- prepend slot --><!--v-if--><div class="el-input__wrapper" tabindex="-1"><!-- prefix slot --><!--v-if--><input class="el-input__inner" type="text" autocomplete="off" tabindex="0" placeholder="请输入标签名" id="el-id-320-1397"><!-- suffix slot --><!--v-if--></div><!-- append slot --><!--v-if--></div><div data-v-23889266="" style="display: flex; flex-wrap: wrap; margin-top: 15px;"><div data-v-23889266="" class="label_name"> 全部 </div><!----></div><!----></div><span class="el-popper__arrow" data-popper-arrow="" style="position: absolute; left: 0px;"></span></div><div class="el-popper is-light el-popover popover_layout" tabindex="-1" aria-hidden="true" role="tooltip" id="el-id-320-1389" data-popper-reference-hidden="false" data-popper-escaped="false" data-popper-placement="bottom" style="z-index: 2054; position: absolute; inset: 193.6px auto auto 420px; width: 410px; display: none;"><!--v-if--><div data-v-23889266="" style="padding: 10px 20px;"><div data-v-23889266="" class="el-input el-input--small el-input--suffix" style="width: 100%; margin-bottom: 10px; height: 30px;"><!-- input --><!-- prepend slot --><!--v-if--><div class="el-input__wrapper" tabindex="-1"><!-- prefix slot --><!--v-if--><input class="el-input__inner" type="text" autocomplete="off" tabindex="0" placeholder="请输入标签名" id="el-id-320-1398"><!-- suffix slot --><!--v-if--></div><!-- append slot --><!--v-if--></div><div data-v-23889266="" style="display: flex; flex-wrap: wrap; margin-top: 15px;"><div data-v-23889266="" class="label_name"> 全部 </div><!----></div><!----></div><span class="el-popper__arrow" data-popper-arrow="" style="position: absolute; left: 0px;"></span></div><!--v-if--><div class="el-popper is-pure is-light el-select__popper" tabindex="-1" aria-hidden="true" role="tooltip" id="el-id-320-1408" data-popper-reference-hidden="false" data-popper-escaped="false" data-popper-placement="bottom-start" style="z-index: 2055; position: absolute; inset: 592px auto auto 1120px; display: none;"><div class="el-select-dropdown" style="min-width: 128px;"><!--v-if--><!--v-if--><div class="el-scrollbar" style=""><div class="el-select-dropdown__wrap el-scrollbar__wrap el-scrollbar__wrap--hidden-default"><ul id="el-id-320-1407" class="el-scrollbar__view el-select-dropdown__list" role="listbox" aria-orientation="vertical" style=""><!--v-if--><li id="el-id-320-1409" class="el-select-dropdown__item" role="option" aria-selected="false"><span>30条/页</span></li><li id="el-id-320-1410" class="el-select-dropdown__item is-selected" role="option" aria-selected="true"><span>60条/页</span></li><li id="el-id-320-1411" class="el-select-dropdown__item" role="option" aria-selected="false"><span>90条/页</span></li><li id="el-id-320-1412" class="el-select-dropdown__item" role="option" aria-selected="false"><span>300条/页</span></li></ul></div><div class="el-scrollbar__bar is-horizontal" style="display: none;"><div class="el-scrollbar__thumb" style="transform: translateX(0%);"></div></div><div class="el-scrollbar__bar is-vertical" style="display: none;"><div class="el-scrollbar__thumb" style="transform: translateY(0%);"></div></div></div><!--v-if--><!--v-if--><!--v-if--></div><span class="el-popper__arrow" data-popper-arrow="" style="position: absolute; left: 0px;"></span></div></div><a id="site-title-logo" href="javascript:void(0)" aria-label="site title"><img src="./rss/assets/title_logo-47a5d6b2.png" alt="RED CUBE"></a>
 <style>
-  /* ===== 跑红+ 活动管理（按《红魔方 UI 设计规范》token 1:1 还原） ===== */
+  /* ===== 跑红+ PC 端：顶部导航高度锁定 60px ===== */
+  /* 修复 header 被子元素撑高问题：强制限定高度 + 溢出隐藏 + 防止 flex 收缩 */
+  body>div#app>header,
+  body>div#app>header>div.wrapper{
+    height:60px!important;
+    max-height:60px!important;
+    min-height:60px!important;
+    overflow:hidden!important;
+    flex-shrink:0!important;
+  }
+  body>div#app>header>div.wrapper>div{flex-shrink:0;}
+  /* 弹层（用户菜单）的偏移基准点同步上移，与新 header 高度对齐 */
+  .el-popper.is-light.el-popover.userInfoPopover{top:60px!important;}
+  /* 跑红+ 活动管理（按《红魔方 UI 设计规范》token 1:1 还原） ===== */
   .hh-wrap{height:calc(100vh - 100px);overflow:hidden auto;padding-right:4px;min-width:1100px;
     font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#303133;}
   /* 卡片：规范主卡片 radius 15 + 极弱阴影 shadow-light */
@@ -901,6 +923,8 @@
     {id:7,cid:1,name:"可回收塑料饰品制作",address:"跑红集团总部 · 2F 手作工坊",start:"2026-08-09 15:00",end:"2026-08-09 17:00",capV:2,capP:10,pointsV:40,pointsP:20,desc:"用可回收塑料制作钥匙包、包包、手机挂件等",cover:"./images/activities/activity_7_recycle_craft.png",signups:[]},
     {id:8,cid:2,name:"中药手串制作",address:"跑红集团总部 · 5F 非遗教室",start:"2026-08-23 14:00",end:"2026-08-23 16:00",capV:1,capP:8,pointsV:60,pointsP:30,desc:"手工制作中药手串等非遗手作",cover:"./images/activities/activity_8_herb_bracelet.png",signups:[]}
   ];
+  /* 发布状态：'pub' 已发布 / 'draft' 未发布 / 'off' 已下线；演示用部分标记为草稿与下线 */
+  (function(){ var _m={1:"off",6:"draft",7:"draft"}; ACTIVITIES.forEach(function(a){a.pub=_m[a.id]||"pub";}); })();
   var gSeq=5, GOODS=[
     {id:1,name:"品牌定制帆布包",points:60,stock:18,exchanged:6,status:"on",img:"./images/goods/canvas_bag.png"},
     {id:2,name:"口红小样礼盒",points:30,stock:40,exchanged:12,status:"on",img:"./images/goods/lipstick_gift.png"},
@@ -981,6 +1005,9 @@
   /* ================= 活动管理 ================= */
   var AC_ST={signup:"报名中",full:"已满",running:"进行中",ended:"已结束"};
   var AC_TAGCLS={signup:"running",full:"full",running:"dispatched",ended:"ended"};
+  /* 发布状态字典：'pub' 已发布 / 'draft' 未发布 / 'off' 已下线 */
+  var AC_PUB_ST={pub:"已发布",draft:"未发布",off:"已下线"};
+  var AC_PUB_CLS={pub:"on",draft:"warn",off:"off"};
   /* 双角色名额/积分辅助（ROLE_LABEL 定义在数据区，供预置明细生成使用） */
   function roleCount(a,r){ return a.signups.filter(function(s){return s.role===r;}).length; }
   function roleCap(a,r){ return r==="v"? a.capV : a.capP; }
@@ -1037,7 +1064,7 @@
     if(a.start<=NOW) return "running";
     return "signup";
   }
-  var acF={kw:"",cid:"",st:""}, acEditing=null;
+  var acF={kw:"",cid:"",st:"",pub:""}, acEditing=null;
   function acFillCommSelects(){
     var cur=val("ac-cid");
     document.getElementById("ac-cid").innerHTML='<option value="">全部社群</option>'
@@ -1049,26 +1076,30 @@
   window.acApply=function(){ acF.kw=val("ac-kw").trim(); acF.cid=val("ac-cid"); acF.st=val("ac-st"); acRender(); };
   window.acReset=function(){ set("ac-kw","");set("ac-cid","");set("ac-st",""); acF={kw:"",cid:"",st:""}; acRender(); };
   function acRender(){
-    var rows=ACTIVITIES.map(function(a){ return Object.assign({},a,{_s:aStatus(a)}); })
+    var rows=ACTIVITIES.map(function(a){ return Object.assign({},a,{_s:aStatus(a),_p:a.pub||"pub"}); })
       .filter(function(a){ return !acF.kw || a.name.indexOf(acF.kw)>-1; })
       .filter(function(a){ return !acF.cid || a.cid===parseInt(acF.cid,10); })
       .filter(function(a){ return !acF.st || a._s===acF.st; })
+      .filter(function(a){ return !acF.pub || a._p===acF.pub; })
       .sort(function(x,y){ return x.start<y.start?1:-1; });
     var tb=document.getElementById("ac-tbody");
-    if(!rows.length){ tb.innerHTML='<tr><td colspan="6"><div class="hh-empty">暂无活动</div></td></tr>'; return; }
+    if(!rows.length){ tb.innerHTML='<tr><td colspan="7"><div class="hh-empty">暂无活动</div></td></tr>'; return; }
     tb.innerHTML=rows.map(function(a){
       var rv=roleCount(a,"v"), rp=roleCount(a,"p");
       var pv=a.capV>0? Math.min(100,Math.round(rv/a.capV*100)):100;
       var pp=a.capP>0? Math.min(100,Math.round(rp/a.capP*100)):100;
+      var pubBtn = a._p==="pub" ? "下线" : "发布";
       return '<tr><td><img class="ac-cover-thumb" src="'+acImg(a)+'" alt="'+esc(a.name)+'" onclick="dtOpen('+a.id+')" style="cursor:pointer"></td>'
         +'<td style="white-space:nowrap"><span class="ac-name-link" onclick="dtOpen('+a.id+')">'+esc(a.name)+'</span></td>'
         +'<td style="white-space:nowrap">'+a.start+' ~ '+a.end+'</td>'
         +'<td><div style="white-space:nowrap">参与者 '+rp+'/'+a.capP+'<span class="ac-bar" style="width:56px"><i style="width:'+pp+'%"></i></span></div>'
           +'<div style="white-space:nowrap;margin-top:4px">志愿者 '+rv+'/'+a.capV+'<span class="ac-bar" style="width:56px"><i style="width:'+pv+'%"></i></span></div></td>'
+        +'<td><span class="hh-tag '+AC_PUB_CLS[a._p]+'">'+AC_PUB_ST[a._p]+'</span></td>'
         +'<td><span class="hh-tag '+AC_TAGCLS[a._s]+'">'+AC_ST[a._s]+'</span></td>'
         +'<td class="hh-op">'
           +'<a onclick="dtOpen('+a.id+')">详情</a>'
           +'<a onclick="acEdit('+a.id+')">编辑</a>'
+          +'<a onclick="acTogglePub('+a.id+')">'+pubBtn+'</a>'
           +'<a onclick="acDel('+a.id+')">删除</a>'
         +'</td></tr>';
     }).join("");
@@ -1077,6 +1108,22 @@
     cfOpen("是否确认删除",function(){
       ACTIVITIES=ACTIVITIES.filter(function(a){return a.id!==id;});
       acRender(); toast("已删除");
+    });
+  };
+  /* 单个活动发布状态切换：已发布→下线 / 草稿/下线→发布 */
+  window.acTogglePub=function(id){
+    var a=ACTIVITIES.find(function(x){return x.id===id;}); if(!a)return;
+    a.pub = a.pub==="pub" ? "off" : "pub";
+    acRender();
+    toast(a.pub==="pub" ? "已发布" : "已下线");
+  };
+  /* 一键发布全部草稿活动 */
+  window.acPubAll=function(){
+    var n=ACTIVITIES.filter(function(a){return (a.pub||"pub")==="draft";}).length;
+    if(!n){ toast("暂无可发布的草稿"); return; }
+    cfOpen("确认将 "+n+" 个草稿活动全部发布到 H5 端？",function(){
+      ACTIVITIES.forEach(function(a){ if((a.pub||"pub")==="draft") a.pub="pub"; });
+      acRender(); toast("已批量发布 "+n+" 个活动");
     });
   };
   function acErrClear(){ ["ac-row-name","ac-row-cid","ac-row-time","ac-row-cap","ac-row-points"].forEach(function(id){ document.getElementById(id).classList.remove("invalid"); }); }
