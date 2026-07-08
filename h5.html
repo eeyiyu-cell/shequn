@@ -17,7 +17,7 @@
   .h1{font-size:18px;font-weight:700;color:#333;}
   .card{background:#fff;border-radius:15px;overflow:hidden;margin-bottom:14px;cursor:pointer;box-shadow:0 6px 16px rgba(173,92,135,.06);}
   .card:active{transform:scale(.99);}
-  .card img{width:100%;height:168px;object-fit:cover;display:block;}
+  .card img{width:100%;aspect-ratio:16/9;height:auto;object-fit:contain;background:#f5f5f7;display:block;}
   .card-bd{padding:12px 14px 14px;}
   .card-title{font-size:17px;font-weight:600;color:#000;}
   .card-meta{font-size:12px;color:#909399;margin-top:8px;line-height:1.9;}
@@ -76,10 +76,50 @@
   .row:last-child{border-bottom:none;}
   .rk-no{width:24px;height:24px;line-height:24px;text-align:center;border-radius:50%;background:#F2F3F5;color:#909399;font-size:13px;font-weight:600;flex-shrink:0;}
   .rk-no.top{background:#FF0086;color:#fff;}
+  .rank-shell{display:flex;flex-direction:column;gap:14px;}
+  .rank-podium{display:flex;align-items:flex-end;justify-content:center;gap:10px;padding-top:8px;}
+  .rank-podium-card{flex:1;min-width:0;border-radius:18px;padding:14px 10px 12px;text-align:center;position:relative;color:#fff;
+    box-shadow:0 10px 26px rgba(173,92,135,.16);}
+  .rank-podium-card.first{order:2;min-height:196px;padding-top:18px;background:linear-gradient(180deg,#ff9ec8 0%,#ff7ab3 36%,#ff5b9e 100%);}
+  .rank-podium-card.second{order:1;min-height:170px;background:linear-gradient(180deg,#ffd9ef 0%,#ffc3df 42%,#ffafd4 100%);color:#8f255d;}
+  .rank-podium-card.third{order:3;min-height:156px;background:linear-gradient(180deg,#ffe1d2 0%,#ffc6ab 42%,#ffab86 100%);color:#944c2d;}
+  .rank-medal{width:40px;height:40px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:800;letter-spacing:.5px;background:rgba(255,255,255,.24);border:1px solid rgba(255,255,255,.35);}
+  .rank-avatar{width:58px;height:58px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,.18);border:3px solid rgba(255,255,255,.65);font-size:24px;font-weight:800;backdrop-filter:blur(4px);}
+  .rank-podium-card.first .rank-avatar{width:66px;height:66px;font-size:28px;}
+  .rank-name{font-size:15px;font-weight:700;line-height:1.3;}
+  .rank-podium-card.first .rank-name{font-size:16px;}
+  .rank-me{display:inline-block;margin-top:4px;padding:0 8px;height:20px;line-height:20px;border-radius:999px;font-size:11px;
+    background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);}
+  .rank-podium-card.second .rank-me,.rank-podium-card.third .rank-me{background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.8);}
+  .rank-score{margin-top:10px;font-size:24px;font-weight:800;line-height:1;}
+  .rank-score small{font-size:12px;font-weight:600;opacity:.9;margin-left:4px;}
+  .rank-meta{margin-top:8px;font-size:12px;opacity:.9;}
+  .rank-list{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.55);border-radius:16px;padding:2px 14px 4px;}
+  .rank-row{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid rgba(234,223,232,.9);}
+  .rank-row:last-child{border-bottom:none;}
+  .rank-left{display:flex;align-items:center;gap:10px;min-width:0;}
+  .rank-badge{width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:#fff5fb;color:#ff5b9e;font-size:13px;font-weight:700;flex-shrink:0;}
+  .rank-row.me .rank-badge{background:#ff0086;color:#fff;}
+  .rank-row-name{font-size:14px;color:#333;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .rank-row.me .rank-row-name{font-weight:700;color:#111;}
+  .rank-row-score{font-size:15px;font-weight:700;color:#ff0086;flex-shrink:0;}
+  .rank-empty{padding:26px 0;text-align:center;color:#a08d95;font-size:13px;}
   .gift-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
   .gift{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 6px 16px rgba(173,92,135,.06);}
-  .gift img{width:100%;height:110px;object-fit:cover;display:block;}
+  .gift img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;}
   .gift-bd{padding:10px 12px;}
+  .order-card{background:#fff;border-radius:14px;padding:12px;display:flex;gap:12px;align-items:flex-start;box-shadow:0 6px 16px rgba(173,92,135,.06);margin-bottom:12px;}
+  .order-thumb{width:72px;height:72px;border-radius:12px;object-fit:cover;display:block;flex-shrink:0;background:#fff0f7;}
+  .order-main{flex:1;min-width:0;}
+  .order-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .order-name{font-size:15px;color:#333;font-weight:600;line-height:1.4;word-break:break-word;}
+  .order-meta{font-size:12px;color:#909399;margin-top:8px;line-height:1.8;}
+  .order-side{flex-shrink:0;min-width:58px;text-align:right;padding-top:2px;}
+  .order-side .l{font-size:11px;color:#a8abb2;line-height:1.2;}
+  .order-side .v{font-size:18px;color:#ff0086;font-weight:800;line-height:1.1;margin-top:6px;white-space:nowrap;}
+  .order-side .v small{font-size:11px;font-weight:600;margin-left:2px;}
   /* 底部导航 */
   .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;height:56px;background:#fff;
     border-top:1px solid #eee;display:flex;z-index:20;box-shadow:0 -2px 10px rgba(0,0,0,.04);}
@@ -89,6 +129,27 @@
   .toast{position:fixed;left:50%;bottom:76px;transform:translateX(-50%);background:rgba(0,0,0,.8);color:#fff;
     padding:10px 20px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:99;max-width:88%;text-align:center;}
   .toast.show{opacity:1;}
+  .confirm-mask{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;display:none;align-items:center;justify-content:center;padding:24px;}
+  .confirm-mask.show{display:flex;animation:cmFade .15s ease-out;}
+  @keyframes cmFade{from{opacity:0;}to{opacity:1;}}
+  .confirm-card{width:100%;max-width:320px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 12px 36px rgba(0,0,0,.18);animation:cmPop .18s ease-out;}
+  @keyframes cmPop{from{transform:scale(.94);opacity:0;}to{transform:scale(1);opacity:1;}}
+  .confirm-head{padding:22px 22px 6px;text-align:center;}
+  .confirm-head h3{margin:0 0 4px;font-size:17px;font-weight:600;color:#222;letter-spacing:.5px;}
+  .confirm-head p{margin:0;font-size:13px;color:#888;}
+  .confirm-body{padding:14px 22px 6px;display:flex;align-items:center;gap:14px;}
+  .confirm-thumb{width:64px;height:64px;border-radius:10px;object-fit:cover;flex:0 0 64px;background:#f6f2f6;}
+  .confirm-info{flex:1;min-width:0;}
+  .confirm-info .gname{font-size:14px;color:#222;font-weight:550;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .confirm-info .gcost{margin-top:6px;font-size:13px;color:#888;}
+  .confirm-info .gcost b{color:#FF0086;font-size:16px;font-weight:600;margin-left:2px;}
+  .confirm-info .gbal{margin-top:2px;font-size:12px;color:#aaa;}
+  .confirm-foot{display:flex;border-top:1px solid #f1eef3;margin-top:14px;}
+  .confirm-foot button{flex:1;height:48px;border:0;background:transparent;font-size:15px;cursor:pointer;}
+  .confirm-foot .cf-cancel{color:#888;}
+  .confirm-foot .cf-cancel:active{background:#faf7fa;}
+  .confirm-foot .cf-ok{color:#fff;background:linear-gradient(90deg,#ff4d97,#ff0086);font-weight:600;}
+  .confirm-foot .cf-ok:active{filter:brightness(.95);}
 </style>
 </head>
 <body>
@@ -128,10 +189,10 @@
       <div style="text-align:right;font-size:12px;opacity:.9;line-height:1.9;">累计获取 <span id="my-gain">0</span><br>累计消耗 <span id="my-cost">0</span></div>
     </div>
     <div class="pts-entries">
-      <div class="pts-entry" onclick="go('records')">积分明细</div>
       <div class="pts-entry" onclick="go('rank')">排行榜</div>
       <div class="pts-entry" onclick="go('gifts')">兑换礼品</div>
       <div class="pts-entry" onclick="go('orders')">礼品订单</div>
+      <div class="pts-entry" onclick="go('records')">积分明细</div>
     </div>
   </div>
   <!-- 子页签 -->
@@ -217,6 +278,23 @@
 </div>
 
 <div class="toast" id="toast"></div>
+<div class="confirm-mask" id="confirm-mask" onclick="if(event.target===this)hideConfirm()">
+  <div class="confirm-card">
+    <div class="confirm-head"><h3>确认兑换</h3><p>请确认以下兑换信息</p></div>
+    <div class="confirm-body">
+      <img class="confirm-thumb" id="cf-thumb" alt="">
+      <div class="confirm-info">
+        <div class="gname" id="cf-name"></div>
+        <div class="gcost">本次将消耗 <b id="cf-cost"></b> 积分</div>
+        <div class="gbal">兑换后剩余 <span id="cf-bal"></span> 积分</div>
+      </div>
+    </div>
+    <div class="confirm-foot">
+      <button class="cf-cancel" onclick="hideConfirm()">取消</button>
+      <button class="cf-ok" id="cf-ok">确认兑换</button>
+    </div>
+  </div>
+</div>
 <script>
 (function(){
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
@@ -236,21 +314,21 @@
   var GD_PAL=[["#FF7AA2","#FF0086"],["#FFB26B","#FF5E8A"],["#9D7BFF","#FF6FB5"],["#36D1C4","#2E86FF"],["#FFC53D","#FF7A45"]];
 
   var ACTIVITIES=[
-    {id:1,name:"体育理疗健身活动",start:"2026-07-10 19:00",end:"2026-07-10 20:30",capV:1,capP:4,pointsV:80,pointsP:50,desc:"各类体育、理疗型活动，提升员工身体素质；每周五 19:00-20:30",signups:[{mid:1,role:"v",time:"2026-07-01 10:12"},{mid:3,role:"p",time:"2026-07-01 10:30"},{mid:11,role:"p",time:"2026-07-05 12:00"}]},
-    {id:2,name:"全员\"一起走\"公益",start:"2026-07-12 08:00",end:"2026-07-12 12:00",capV:3,capP:17,pointsV:50,pointsP:30,desc:"全体员工共同参与的公益行走活动",signups:[{mid:2,role:"v",time:"2026-06-28 09:11"},{mid:4,role:"p",time:"2026-06-28 09:40"},{mid:8,role:"p",time:"2026-06-29 14:25"},{mid:9,role:"p",time:"2026-06-30 16:08"}]},
-    {id:3,name:"\"可持续一厦\"公益",start:"2026-07-15 09:00",end:"2026-07-15 17:00",capV:1,capP:2,pointsV:40,pointsP:20,desc:"志愿参加\"可持续一厦\"环保公益活动",signups:[{mid:6,role:"v",time:"2026-07-02 10:01"},{mid:7,role:"p",time:"2026-07-02 10:03"},{mid:10,role:"p",time:"2026-07-02 10:05"}]},
-    {id:4,name:"流浪动物救助",start:"2026-06-18 10:00",end:"2026-06-18 16:00",capV:2,capP:6,pointsV:60,pointsP:40,desc:"参与流浪动物救助公益行动",signups:[{mid:1,role:"v",time:"2026-06-18 11:20"},{mid:3,role:"p",time:"2026-06-18 12:05"},{mid:6,role:"p",time:"2026-06-19 09:33"},{mid:11,role:"p",time:"2026-06-15 12:30"}]},
-    {id:5,name:"\"集美超美\"艺术评比",start:"2026-06-20 14:00",end:"2026-06-20 18:00",capV:2,capP:8,pointsV:45,pointsP:25,desc:"挖掘集美艺术区，作品输出、评比，公区展示、积分表彰",signups:[{mid:2,role:"v",time:"2026-06-23 15:10"},{mid:4,role:"p",time:"2026-06-23 15:22"},{mid:7,role:"p",time:"2026-06-24 10:40"}]},
-    {id:6,name:"红顶艺术馆参访",start:"2026-07-25 14:00",end:"2026-07-25 17:00",capV:1,capP:5,pointsV:50,pointsP:30,desc:"做客红顶艺术馆，与艺术家近距离接触",signups:[]},
-    {id:7,name:"可回收塑料饰品制作",start:"2026-07-28 15:00",end:"2026-07-28 17:00",capV:2,capP:10,pointsV:40,pointsP:20,desc:"用可回收塑料制作钥匙包、包包、手机挂件等",signups:[]},
-    {id:8,name:"中药手串制作",start:"2026-07-30 14:00",end:"2026-07-30 16:00",capV:1,capP:8,pointsV:60,pointsP:30,desc:"手工制作中药手串等非遗手作",signups:[]}
+    {id:1,name:"体育理疗健身活动",start:"2026-07-10 19:00",end:"2026-07-10 20:30",capV:1,capP:4,pointsV:80,pointsP:50,desc:"各类体育、理疗型活动，提升员工身体素质；每周五 19:00-20:30",cover:"./images/activities/activity_1_fitness_therapy.png",signups:[{mid:1,role:"v",time:"2026-07-01 10:12"},{mid:3,role:"p",time:"2026-07-01 10:30"},{mid:11,role:"p",time:"2026-07-05 12:00"}]},
+    {id:2,name:"全员\"一起走\"公益",start:"2026-07-12 08:00",end:"2026-07-12 12:00",capV:3,capP:17,pointsV:50,pointsP:30,desc:"全体员工共同参与的公益行走活动",cover:"./images/activities/activity_2_walk_for_good.png",signups:[{mid:2,role:"v",time:"2026-06-28 09:11"},{mid:4,role:"p",time:"2026-06-28 09:40"},{mid:8,role:"p",time:"2026-06-29 14:25"},{mid:9,role:"p",time:"2026-06-30 16:08"}]},
+    {id:3,name:"\"可持续一厦\"公益",start:"2026-07-15 09:00",end:"2026-07-15 17:00",capV:1,capP:2,pointsV:40,pointsP:20,desc:"志愿参加\"可持续一厦\"环保公益活动",cover:"./images/activities/activity_3_sustainable_xia.png",signups:[{mid:6,role:"v",time:"2026-07-02 10:01"},{mid:7,role:"p",time:"2026-07-02 10:03"},{mid:10,role:"p",time:"2026-07-02 10:05"}]},
+    {id:4,name:"流浪动物救助",start:"2026-06-18 10:00",end:"2026-06-18 16:00",capV:2,capP:6,pointsV:60,pointsP:40,desc:"参与流浪动物救助公益行动",cover:"./images/activities/activity_4_stray_animal.png",signups:[{mid:1,role:"v",time:"2026-06-18 11:20"},{mid:3,role:"p",time:"2026-06-18 12:05"},{mid:6,role:"p",time:"2026-06-19 09:33"},{mid:11,role:"p",time:"2026-06-15 12:30"}]},
+    {id:5,name:"\"集美超美\"艺术评比",start:"2026-06-20 14:00",end:"2026-06-20 18:00",capV:2,capP:8,pointsV:45,pointsP:25,desc:"挖掘集美艺术区，作品输出、评比，公区展示、积分表彰",cover:"./images/activities/activity_5_art_jimei.png",signups:[{mid:2,role:"v",time:"2026-06-23 15:10"},{mid:4,role:"p",time:"2026-06-23 15:22"},{mid:7,role:"p",time:"2026-06-24 10:40"}]},
+    {id:6,name:"红顶艺术馆参访",start:"2026-07-25 14:00",end:"2026-07-25 17:00",capV:1,capP:5,pointsV:50,pointsP:30,desc:"做客红顶艺术馆，与艺术家近距离接触",cover:"./images/activities/activity_6_hongding_museum.png",signups:[]},
+    {id:7,name:"可回收塑料饰品制作",start:"2026-07-28 15:00",end:"2026-07-28 17:00",capV:2,capP:10,pointsV:40,pointsP:20,desc:"用可回收塑料制作钥匙包、包包、手机挂件等",cover:"./images/activities/activity_7_recycle_craft.png",signups:[]},
+    {id:8,name:"中药手串制作",start:"2026-07-30 14:00",end:"2026-07-30 16:00",capV:1,capP:8,pointsV:60,pointsP:30,desc:"手工制作中药手串等非遗手作",cover:"./images/activities/activity_8_herb_bracelet.png",signups:[]}
   ];
   var GOODS=[
-    {id:1,name:"品牌定制帆布包",points:60,stock:18,status:"on"},
-    {id:2,name:"口红小样礼盒",points:30,stock:40,status:"on"},
-    {id:3,name:"洁面巾两盒装",points:20,stock:66,status:"on"},
-    {id:4,name:"限量联名马克杯",points:80,stock:0,status:"on"},
-    {id:5,name:"精华小样体验装",points:15,stock:120,status:"off"}
+    {id:1,name:"品牌定制帆布包",points:60,stock:18,status:"on",img:"./images/goods/canvas_bag.png"},
+    {id:2,name:"口红小样礼盒",points:30,stock:40,status:"on",img:"./images/goods/lipstick_gift.png"},
+    {id:3,name:"洁面巾两盒装",points:20,stock:66,status:"on",img:"./images/goods/facial_towel.png"},
+    {id:4,name:"限量联名马克杯",points:80,stock:0,status:"on",img:"./images/goods/mug_limited.png"},
+    {id:5,name:"精华小样体验装",points:15,stock:120,status:"off",img:"./images/goods/serum_trial.png"}
   ];
   var oSeq=3, ORDERS=[
     {id:1,orderNo:"DH20260705011",mid:11,gid:2,goods:"口红小样礼盒",points:30,time:"2026-07-05 11:20",status:"done",operator:"王丽娜"},
@@ -304,6 +382,7 @@
     return "data:image/svg+xml;utf8,"+encodeURIComponent(svg);
   }
   function giftImg(g){
+    if(g&&g.img) return g.img;
     var pal=GD_PAL[g.id%GD_PAL.length]; var label=esc(g.name.slice(0,2));
     var svg='<svg xmlns="http://www.w3.org/2000/svg" width="200" height="150"><defs><linearGradient id="g'+g.id+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+pal[0]+'"/><stop offset="1" stop-color="'+pal[1]+'"/></linearGradient></defs><rect width="200" height="150" fill="url(#g'+g.id+')"/><circle cx="170" cy="20" r="40" fill="#fff" opacity="0.13"/><text x="100" y="86" font-size="30" font-weight="700" fill="#fff" text-anchor="middle" font-family="PingFang SC,Microsoft YaHei,sans-serif">'+label+'</text></svg>';
     return "data:image/svg+xml;utf8,"+encodeURIComponent(svg);
@@ -420,12 +499,32 @@
   }
   function renderRank(){
     var rows=MEMBERS.map(function(m){return {m:m,b:balance(m.id)};}).sort(function(a,b){return b.b-a.b;});
-    document.getElementById("rank").innerHTML=rows.map(function(x,i){
+    if(!rows.length){ document.getElementById("rank").innerHTML='<div class="rank-empty">暂无排行榜数据</div>'; return; }
+    var topRows=rows.slice(0,3);
+    var restRows=rows.slice(3);
+    var podiumOrder=[1,0,2];
+    var medals=["TOP1","TOP2","TOP3"];
+    var podiumHtml=podiumOrder.map(function(idx){
+      var x=topRows[idx];
+      if(!x) return "";
       var me=x.m.id===CUR;
-      return '<div class="row"><div style="display:flex;align-items:center;gap:10px;"><span class="rk-no'+(i<3?" top":"")+'">'+(i+1)+'</span>'
-        +'<span style="font-size:14px;color:#333;font-weight:'+(me?"700":"400")+';">'+esc(x.m.name)+(me?' <span style="color:#FF0086;font-size:12px;">(我)</span>':'')+'</span></div>'
-        +'<div class="points" style="font-size:15px;">'+x.b+' 分</div></div>';
+      var cls=idx===0?"first":(idx===1?"second":"third");
+      return '<div class="rank-podium-card '+cls+'">'
+        +'<div class="rank-medal">'+medals[idx]+'</div>'
+        +'<div class="rank-avatar">'+esc(x.m.name.slice(-1))+'</div>'
+        +'<div class="rank-name">'+esc(x.m.name)+'</div>'
+        +(me?'<div class="rank-me">我的排名</div>':'')
+        +'<div class="rank-score">'+x.b+'<small>分</small></div>'
+        +'<div class="rank-meta">第 '+(idx+1)+' 名</div>'
+      +'</div>';
     }).join("");
+    var listHtml=restRows.length? restRows.map(function(x,i){
+      var me=x.m.id===CUR;
+      return '<div class="rank-row'+(me?' me':'')+'"><div class="rank-left"><span class="rank-badge">'+(i+4)+'</span>'
+        +'<span class="rank-row-name">'+esc(x.m.name)+(me?' <span style="color:#FF0086;font-size:12px;">(我)</span>':'')+'</span></div>'
+        +'<div class="rank-row-score">'+x.b+' 分</div></div>';
+    }).join("") : '<div class="rank-empty">仅展示前三名成员</div>';
+    document.getElementById("rank").innerHTML='<div class="rank-shell"><div class="rank-podium">'+podiumHtml+'</div><div class="rank-list">'+listHtml+'</div></div>';
   }
   function renderGifts(){
     var rows=GOODS.filter(function(g){return g.status==="on";});
@@ -442,6 +541,27 @@
     var g=GOODS.find(function(x){return x.id===gid;}); if(!g)return;
     if(g.stock<=0){ toast("库存不足"); return; }
     if(balance(CUR)<g.points){ toast("积分不足，无法兑换"); return; }
+    showConfirm(g);
+  };
+  var _pendingRedeem=null;
+  function showConfirm(g){
+    _pendingRedeem=g;
+    var mask=document.getElementById("confirm-mask");
+    document.getElementById("cf-thumb").src=giftImg(g);
+    document.getElementById("cf-name").textContent=g.name;
+    document.getElementById("cf-cost").textContent=g.points;
+    document.getElementById("cf-bal").textContent=balance(CUR)-g.points;
+    var ok=document.getElementById("cf-ok");
+    ok.onclick=function(){ hideConfirm(); doRedeem(_pendingRedeem); };
+    mask.classList.add("show");
+  }
+  window.hideConfirm=function(){
+    var mask=document.getElementById("confirm-mask");
+    if(mask) mask.classList.remove("show");
+    _pendingRedeem=null;
+  };
+  function doRedeem(g){
+    if(!g) return;
     var t=nowStr();
     g.stock--;
     RECORDS.push({id:++rSeq,mid:CUR,type:"cost",points:g.points,reason:"积分兑换："+g.name,time:t});
@@ -451,13 +571,15 @@
     renderGifts(); renderOrders(); document.getElementById("my-balance").textContent=balance(CUR);
     document.getElementById("my-cost").textContent=sumCost(CUR); document.getElementById("gift-bal").textContent=balance(CUR);
     renderRecords(); renderRank();
-  };
+  }
   function renderOrders(){
     var rows=ORDERS.filter(function(o){return o.mid===CUR;}).sort(function(a,b){return a.time===b.time?b.id-a.id:(a.time<b.time?1:-1);});
     document.getElementById("orders").innerHTML=rows.length? rows.map(function(o){
-      return '<div class="card" style="cursor:default;margin-bottom:12px;"><div class="card-bd" style="padding:14px;">'
-        +'<div style="display:flex;align-items:center;justify-content:space-between;"><div style="font-size:15px;color:#333;font-weight:500;">'+esc(o.goods)+'</div><span class="tag '+OD_CLS[o.status]+'">'+OD_ST[o.status]+'</span></div>'
-        +'<div style="font-size:12px;color:#909399;margin-top:8px;line-height:1.9;">订单号：'+o.orderNo+'<br>消耗积分：<span class="points">'+o.points+'</span>　兑换时间：'+o.time+(o.operator?'<br>发放运营：'+esc(o.operator):'')+'</div></div></div>';
+      var g=GOODS.find(function(x){ return x.id===o.gid; }) || {id:o.gid||0,name:o.goods||""};
+      return '<div class="order-card"><img class="order-thumb" src="'+giftImg(g)+'" alt="'+esc(o.goods)+'">'
+        +'<div class="order-main"><div class="order-top"><div class="order-name">'+esc(o.goods)+'</div><span class="tag '+OD_CLS[o.status]+'">'+OD_ST[o.status]+'</span></div>'
+        +'<div class="order-meta">订单号：'+o.orderNo+'<br>兑换时间：'+o.time+(o.operator?'<br>发放运营：'+esc(o.operator):'')+'</div></div>'
+        +'<div class="order-side"><div class="l">消耗积分</div><div class="v">'+o.points+'<small>分</small></div></div></div>';
     }).join("") : '<div class="empty">暂无礼品订单</div>';
   }
 
