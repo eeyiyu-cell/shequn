@@ -848,6 +848,30 @@
         <div class="dt-modal-ft"><button class="pc-btn plain" onclick="closeSignup()">取消</button><button class="pc-btn" onclick="confirmSignup()">确认报名</button></div>
       </div>
     </div>
+    <div class="dt-mask" id="ex-mask" onclick="if(event.target===this)closeExchange()">
+      <div class="dt-modal" style="width:440px;">
+        <div class="dt-modal-hd"><span>兑换确认</span><span class="dt-x" onclick="closeExchange()">&times;</span></div>
+        <div class="dt-modal-bd">
+          <div style="display:flex;gap:14px;align-items:center;padding:8px 0 6px;">
+            <img id="ex-img" src="" alt="" style="width:80px;height:80px;border-radius:10px;object-fit:cover;background:#f6f6f8;flex-shrink:0;">
+            <div style="flex:1;min-width:0;">
+              <div id="ex-tt" style="font-size:15px;font-weight:700;color:#222;line-height:1.4;"></div>
+              <div style="margin-top:8px;display:flex;align-items:baseline;gap:6px;">
+                <span style="font-size:12px;color:var(--text-3);">所需积分</span>
+                <b id="ex-pt" style="font-size:20px;font-weight:800;color:var(--primary);"></b>
+                <span style="font-size:12px;color:var(--text-3);">分</span>
+              </div>
+            </div>
+          </div>
+          <div style="background:#FBF7FA;border:1px solid #F3E9F0;border-radius:10px;padding:12px 14px;margin-top:14px;font-size:13px;color:var(--text-2);line-height:1.7;">
+            <div>当前积分：<b id="ex-cur" style="color:#222;"></b> 分</div>
+            <div>兑换后余额：<b id="ex-left" style="color:#222;"></b> 分</div>
+          </div>
+          <div style="font-size:12px;color:var(--text-3);margin-top:12px;line-height:1.6;">· 兑换后将从积分余额中扣除相应积分<br>· 礼品将在 3 个工作日内安排发货</div>
+        </div>
+        <div class="dt-modal-ft"><button class="pc-btn plain" onclick="closeExchange()">取消</button><button class="pc-btn" id="ex-confirm-btn" onclick="doExchange()">确认兑换</button></div>
+      </div>
+    </div>
   </section>
 
   <!-- ===== 公告 ===== -->
@@ -1125,7 +1149,7 @@
         <div class="my-points-top">
           <div>
             <div class="my-points-lab">我的积分</div>
-            <div class="my-points-val" style="background:none;-webkit-background-clip:initial;background-clip:initial;-webkit-text-fill-color:#fff;color:#fff;text-shadow:0 0 30px rgba(255,68,165,.3);"><span style="background:none;-webkit-background-clip:initial;background-clip:initial;-webkit-text-fill-color:initial;color:inherit;">1,860</span><small>分</small></div>
+            <div class="my-points-val" style="background:none;-webkit-background-clip:initial;background-clip:initial;-webkit-text-fill-color:#fff;color:#fff;text-shadow:0 0 30px rgba(255,68,165,.3);"><span id="my-pt-num" style="background:none;-webkit-background-clip:initial;background-clip:initial;-webkit-text-fill-color:initial;color:inherit;">1,860</span><small>分</small></div>
           </div>
           <div class="my-points-stats">
             <div><div class="ps-k">累计获取</div><div class="ps-v">2,340</div></div>
@@ -1744,12 +1768,12 @@ window.closeMyPointModal=window.closeMyPointModal||function(){};
       b.innerHTML='<div class="rank-shell"><div class="rank-podium">'+podiumHtml+'</div><div class="rank-list">'+listHtml+'</div></div>';
     }else if(k==="mall"){
       t.textContent="兑换礼品";
-      var cards=MPM_GOODS.map(function(g){
+      var cards=MPM_GOODS.map(function(g,i){
         var label=g.ok?"立即兑换":"积分不足";
         return '<div class="gift-card"><img src="'+g.img+'" alt=""><div class="gift-card-bd">'
           +'<div class="gc-tt">'+g.tt+'</div>'
           +'<div class="gc-pt"><b>'+g.p+' 分</b><span class="gc-stock">库存 '+g.s+'</span></div>'
-          +'<button class="gc-btn"'+(g.ok?'':' disabled')+'>'+label+'</button></div></div>';
+          +'<button class="gc-btn"'+(g.ok?' onclick="openExchange('+i+')"':' disabled')+'>'+label+'</button></div></div>';
       }).join("");
       b.innerHTML='<div class="gift-grid">'+cards+'</div>';
     }else if(k==="orders"){
@@ -1782,7 +1806,61 @@ window.closeMyPointModal=window.closeMyPointModal||function(){};
   }
   window.openMyPointModal=_openMyPointModal;
   window.closeMyPointModal=closeMyPointModal;
-  document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeMyPointModal(); });
+  document.addEventListener("keydown",function(e){ if(e.key==="Escape") { closeMyPointModal(); closeExchange(); } });
+
+  /* ===== 兑换确认弹框 ===== */
+  var EX_CUR=0, EX_IDX=-1;
+  function _getMyPoints(){
+    var raw=document.getElementById("my-pt-num");
+    if(raw){
+      var v=raw.textContent.replace(/[^\d]/g,"");
+      return parseInt(v||"0",10);
+    }
+    return 1860;
+  }
+  window.openExchange=function(i){
+    var g=MPM_GOODS[i]; if(!g||!g.ok) return;
+    EX_IDX=i;
+    var p=parseInt(g.p.replace(/[^\d]/g,""),10)||0;
+    EX_CUR=_getMyPoints();
+    document.getElementById("ex-img").src=g.img;
+    document.getElementById("ex-tt").textContent=g.tt;
+    document.getElementById("ex-pt").textContent=p.toLocaleString();
+    document.getElementById("ex-cur").textContent=EX_CUR.toLocaleString();
+    document.getElementById("ex-left").textContent=(EX_CUR-p).toLocaleString();
+    var mask=document.getElementById("ex-mask");
+    if(mask){ mask.classList.add("show"); document.body.style.overflow="hidden"; }
+  };
+  window.closeExchange=function(){
+    var mask=document.getElementById("ex-mask");
+    if(mask) mask.classList.remove("show");
+    if(!document.getElementById("mpm-mask")||!document.getElementById("mpm-mask").classList.contains("show")){
+      document.body.style.overflow="";
+    }
+    EX_IDX=-1;
+  };
+  window.doExchange=function(){
+    if(EX_IDX<0) return;
+    var g=MPM_GOODS[EX_IDX]; if(!g) return;
+    var p=parseInt(g.p.replace(/[^\d]/g,""),10)||0;
+    var now=new Date();
+    var pad=function(n){return n<10?"0"+n:""+n;};
+    var tm=now.getFullYear()+"-"+pad(now.getMonth()+1)+"-"+pad(now.getDate())+" "+pad(now.getHours())+":"+pad(now.getMinutes());
+    var orderNo=now.getFullYear()+""+pad(now.getMonth()+1)+pad(now.getDate())+pad(now.getHours())+pad(now.getMinutes())+pad(Math.floor(Math.random()*90+10));
+    MPM_ORDERS.unshift({
+      img:g.img,tt:g.tt,st:"ship",stn:"待发货",
+      no:orderNo,p:g.p,tm:tm,line:""
+    });
+    MPM_RECORDS.unshift({
+      ico:"−",tt:"兑换「"+g.tt+"」",sub:"礼品兑换 · "+tm,
+      v:"-"+p,type:"cost",af:(EX_CUR-p).toLocaleString()
+    });
+    g.s=Math.max(0,g.s-1);
+    var raw=document.getElementById("my-pt-num");
+    if(raw){ raw.textContent=(EX_CUR-p).toLocaleString(); }
+    closeExchange();
+    toast("兑换成功！积分已扣除 "+p.toLocaleString()+" 分");
+  };
 
   /* ===== 轮播 ===== */
   var cIdx=0, cLen=3, cTimer;
