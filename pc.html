@@ -12,10 +12,13 @@
   }
   body{font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     color:var(--text);min-height:100vh;
-    background:#fafbfc;
-    background-image:radial-gradient(ellipse 1200px 600px at 0% 0%,rgba(255,68,165,.07) 0%,rgba(255,68,165,0) 60%),
-      radial-gradient(ellipse 900px 500px at 100% 100%,rgba(124,58,237,.05) 0%,rgba(124,58,237,0) 60%),
-      radial-gradient(ellipse 700px 400px at 50% 50%,rgba(212,175,55,.025) 0%,rgba(212,175,237,0) 70%);
+    background:#FDFCFC;
+    background-image:
+      radial-gradient(ellipse 1400px 800px at 0% 0%,rgba(240,197,181,.13) 0%,rgba(240,197,181,0) 70%),
+      radial-gradient(ellipse 1300px 700px at 100% 0%,rgba(181,160,242,.09) 0%,rgba(181,160,242,0) 70%),
+      radial-gradient(ellipse 1200px 800px at 100% 100%,rgba(199,62,92,.05) 0%,rgba(199,62,92,0) 70%),
+      radial-gradient(ellipse 1100px 700px at 0% 100%,rgba(229,181,160,.12) 0%,rgba(229,181,160,0) 70%),
+      radial-gradient(ellipse 900px 600px at 50% 50%,rgba(212,175,55,.05) 0%,rgba(212,175,55,0) 75%);
     background-attachment:fixed;}
   a{color:inherit;text-decoration:none;}
 
@@ -23,7 +26,7 @@
   .pc-header{position:sticky;top:0;z-index:50;background:#ffffff;
     border-bottom:1px solid rgba(173,92,135,.10);box-shadow:0 2px 16px rgba(173,92,135,.06);}
   .pc-header-inner{max-width:1180px;margin:0 auto;height:72px;padding:0 24px;display:flex;align-items:center;gap:36px;}
-  .pc-logo{display:flex;align-items:center;height:100%;flex-shrink:0;cursor:pointer;margin:0;padding:0;}
+  .pc-logo{display:flex;align-items:center;height:52px;flex-shrink:0;cursor:pointer;margin:0;padding:0;}
   .pc-logo-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#ffb799,#ff44a5);
     display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(255,68,165,.28);}
   .pc-logo-text{font-size:20px;font-weight:800;letter-spacing:.5px;color:#33262c;}
@@ -131,17 +134,93 @@
   .pts{color:var(--primary);font-weight:600;}
   .empty{text-align:center;color:var(--text-3);padding:60px 0;font-size:14px;}
 
+  /* ===== 活动长图（含内容/行程/注意事项/联系人） ===== */
+  .act-poster{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 14px 36px rgba(173,92,135,.12);max-width:760px;margin:0 auto;}
+  @keyframes apspin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+  .ap-banner{position:relative;padding:34px 36px 76px;background:linear-gradient(135deg,#1a1d29 0%,#2d3142 50%,#3b2a3f 100%);color:#fff;overflow:hidden;}
+  .ap-banner::before{content:"";position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(255,68,165,.38) 0%,transparent 70%);}
+  .ap-banner::after{content:"";position:absolute;bottom:-40px;left:-30px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,.18) 0%,transparent 70%);}
+  .ap-tag{position:relative;display:inline-block;padding:5px 14px;border-radius:999px;background:rgba(255,255,255,.14);backdrop-filter:blur(8px);font-size:12px;letter-spacing:1px;margin-bottom:18px;border:1px solid rgba(255,255,255,.18);}
+  .ap-title{position:relative;font-size:30px;font-weight:800;line-height:1.3;letter-spacing:1px;text-shadow:0 4px 12px rgba(0,0,0,.18);}
+  .ap-sub{position:relative;font-size:14px;opacity:.78;margin-top:12px;letter-spacing:.5px;}
+  .ap-meta{position:relative;display:flex;flex-wrap:wrap;gap:18px;margin-top:22px;font-size:13px;opacity:.92;}
+  .ap-meta span{display:inline-flex;align-items:center;gap:6px;}
+
+  .ap-times{position:relative;margin:-50px 24px 0;background:#fff;border-radius:18px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 10px 24px rgba(0,0,0,.08);z-index:1;}
+  .ap-times .t-l{font-size:12.5px;color:#909399;margin-bottom:4px;}
+  .ap-times .t-v{font-size:20px;font-weight:800;color:#1d1418;letter-spacing:.5px;}
+  .ap-times .t-v small{font-size:12px;font-weight:500;color:#909399;margin-left:4px;}
+  .ap-times .t-arrow{color:#c9bcc1;font-size:18px;margin:0 14px;flex-shrink:0;}
+
+  .ap-section{padding:24px 32px;}
+  .ap-section + .ap-section{border-top:1px dashed #F0E6EC;}
+  .ap-h{font-size:17px;font-weight:800;color:#1d1418;display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+  .ap-h::before{content:"";width:4px;height:18px;border-radius:2px;background:linear-gradient(180deg,#ffb799,#ff44a5);}
+
+  /* 活动内容 */
+  .ap-intro{font-size:14px;color:#3d3238;line-height:1.85;}
+  .ap-intro b{color:#d70000;font-weight:700;}
+
+  /* 行程时间表 */
+  .ap-itinerary{display:flex;flex-direction:column;gap:10px;position:relative;}
+  .ap-itinerary::before{content:"";position:absolute;left:48px;top:14px;bottom:14px;width:2px;background:linear-gradient(180deg,#ffd6e6 0%,#ffe9d6 100%);}
+  .ap-it-row{display:flex;gap:14px;align-items:flex-start;position:relative;}
+  .ap-it-time{flex-shrink:0;width:78px;padding-top:7px;font-size:14px;font-weight:700;color:#d70000;font-variant-numeric:tabular-nums;}
+  .ap-it-bullet{flex-shrink:0;width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,#ff9ac4,#ff0086);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:10px;box-shadow:0 4px 10px rgba(255,0,134,.28);z-index:1;border:2px solid #fff;margin-top:5px;}
+  .ap-it-main{flex:1;padding:8px 14px;background:#FAF7F9;border-radius:10px;border:1px solid #F3EEF2;}
+  .ap-it-tt{font-size:14px;font-weight:700;color:#1d1418;margin-bottom:3px;}
+  .ap-it-sub{font-size:12.5px;color:#606266;line-height:1.5;}
+
+  /* 注意事项 */
+  .ap-tips{padding:16px 18px;background:linear-gradient(135deg,#fff8e1,#fffef7);border:1px solid #fce4a8;border-radius:12px;}
+  .ap-tips-list{display:flex;flex-direction:column;gap:9px;margin-top:4px;}
+  .ap-tip-item{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:#7a5b1a;line-height:1.7;}
+  .ap-tip-item::before{content:"";flex-shrink:0;width:6px;height:6px;border-radius:50%;background:#d4af37;margin-top:9px;}
+
+  /* 联系人 */
+  .ap-contact{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .ap-c-card{display:flex;align-items:center;gap:12px;padding:14px 14px;background:linear-gradient(135deg,#fff5fa 0%,#fff 100%);border:1px solid #ffd6e6;border-radius:12px;}
+  .ap-c-ava{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#ff9ac4,#ff0086);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;flex-shrink:0;}
+  .ap-c-main{flex:1;min-width:0;}
+  .ap-c-tt{font-size:13px;font-weight:700;color:#1d1418;margin-bottom:3px;}
+  .ap-c-num{font-size:12px;color:#d70000;font-weight:600;letter-spacing:.5px;}
+
+  /* 积分 */
+  .ap-points{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .ap-pt-card{padding:18px 16px;border-radius:14px;background:linear-gradient(135deg,#fff5fa 0%,#fff 100%);border:1px solid #ffd6e6;text-align:center;}
+  .ap-pt-card .pt-tt{font-size:13px;font-weight:700;color:#d70000;margin-bottom:6px;}
+  .ap-pt-card .pt-v{font-size:32px;font-weight:800;background:linear-gradient(135deg,#ff44a5,#d70000);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;}
+  .ap-pt-card .pt-v small{font-size:13px;font-weight:600;-webkit-text-fill-color:#d70000;margin-left:4px;}
+  .ap-pt-card .pt-s{font-size:11.5px;color:#909399;margin-top:5px;}
+
+  /* 底部 CTA */
+  .ap-cta{padding:20px 32px 28px;text-align:center;background:linear-gradient(to top,rgba(255,68,165,.05),transparent);}
+  .ap-cta .c-tt{font-size:15px;color:#1d1418;font-weight:700;margin-bottom:5px;}
+  .ap-cta .c-sub{font-size:12.5px;color:#909399;}
+  .ap-cta .c-foot{font-size:11px;color:#c0c4cc;margin-top:14px;letter-spacing:1px;}
+
+  /* 长图展示区（图片模式） */
+  .ap-img-wrap{position:relative;max-width:760px;margin:0;border-radius:16px;overflow:hidden;background:#faf7f9;box-shadow:0 10px 28px rgba(173,92,135,.10);}
+  .ap-img-wrap img{display:block;width:auto;max-width:100%;height:auto;background:#fff;}
+  .ap-img-loading{position:absolute;inset:0;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:12px;padding:24px;background:linear-gradient(135deg,#fff5fa,#fff);color:#909399;font-size:13px;}
+  .ap-img-loading .spinner{width:36px;height:36px;border-radius:50%;border:3px solid #ffd6e6;border-top-color:#ff44a5;animation:apspin 1s linear infinite;}
+  .ap-img-loading .pct{font-size:11.5px;color:#c0c4cc;}
+
+  /* 屏外渲染舞台 */
+  #actPosterStage{position:fixed;left:-99999px;top:0;width:760px;background:#fff;z-index:-1;pointer-events:none;}
+
   /* ===== 活动详情 ===== */
-  .dt-top{display:flex;gap:26px;align-items:flex-start;}
-  .dt-cover-card{position:relative;width:420px;flex-shrink:0;border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 14px 36px rgba(173,92,135,.14);}
-  .dt-cover{width:100%;height:230px;object-fit:cover;display:block;}
-  .dt-cover-cap{position:absolute;left:0;right:0;bottom:0;padding:18px 20px 18px;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,rgba(0,0,0,.18) 50%,transparent 100%);color:#fff;}
-  .dt-cover-name{font-size:18px;font-weight:800;line-height:1.3;}
-  .dt-cover-sub{font-size:12.5px;opacity:.85;margin-top:4px;}
-  .dt-info{flex:1;min-width:0;}
-  .dt-name{font-size:24px;font-weight:800;color:#111;display:none;}
-  .dt-rows{margin-top:16px;}
-  .dt-row{display:flex;font-size:14px;line-height:26px;color:var(--text);}
+  .dt-top{display:grid;grid-template-columns:420px 1fr;grid-template-rows:1fr auto;gap:0;align-items:stretch;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 14px 36px rgba(173,92,135,.10);border:1px solid #F5EEF2;}
+  .dt-cover-card{position:relative;grid-column:1/2;grid-row:1/2;overflow:hidden;background:#fff;display:flex;align-items:flex-end;justify-content:center;padding:14px;}
+  .dt-cover{width:100%;height:auto;display:block;border-radius:5px;max-height:100%;object-fit:cover;}
+  .dt-info{grid-column:2/3;grid-row:1/2;min-width:0;padding:28px 36px 0;display:flex;flex-direction:column;}
+  .dt-info .dt-name{flex-shrink:0;}
+  .dt-info .dt-rows{flex:1;display:flex;flex-direction:column;justify-content:flex-end;}
+  .dt-actions{grid-column:2/3;grid-row:2/3;display:flex;gap:12px;padding:0 36px 26px;background:#fff;}
+  .dt-name{font-size:22px;font-weight:800;color:#111;display:block;line-height:1.3;letter-spacing:.5px;padding-right:8px;margin-bottom:14px;}
+  .dt-rows{margin-top:0;}
+  .dt-row{display:flex;font-size:14px;line-height:32px;color:var(--text);align-items:center;padding:2px 0;}
   .dt-row .k{width:80px;color:var(--text-3);flex-shrink:0;}
   .dt-quota{display:flex;gap:14px;margin-top:18px;}
   .qbox{flex:1;background:#FBF7FA;border:1px solid #F3E9F0;border-radius:12px;padding:14px 16px;text-align:center;}
@@ -154,7 +233,6 @@
   .signer{display:inline-block;padding:0 12px;height:30px;line-height:30px;border-radius:16px;font-size:13px;background:#F2F3F5;color:var(--text-2);margin:0 8px 8px 0;}
   .signer.v{background:#EEF4FF;color:#3A6FE0;}
   .signer.p{background:var(--primary-08);color:var(--primary);}
-  .dt-actions{display:flex;gap:12px;margin-top:22px;}
   .dt-actions .pc-btn{height:46px;padding:0 30px;font-size:15px;}
 
   /* ===== 公告（左图右文列表） ===== */
@@ -163,12 +241,52 @@
   .ntc-card:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(173,92,135,.15);}
   .ntc-card .cover{width:230px;height:145px;object-fit:cover;display:block;background:#f2f2f2;border-radius:12px;flex-shrink:0;}
   .ntc-card .bd{flex:1;min-width:0;display:flex;flex-direction:column;padding:4px 2px;}
-  .ntc-card .tt{font-size:17px;font-weight:700;color:#222;line-height:1.5;}
+  .ntc-card .tt{font-size:18px;font-weight:700;color:#222;line-height:1.5;}
   .ntc-card .sum{font-size:13px;color:var(--text-3);line-height:1.75;margin-top:9px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
   .ntc-card .mt{font-size:13px;color:var(--text-3);margin-top:auto;padding-top:10px;line-height:1.7;display:flex;align-items:center;gap:16px;}
 
-  /* ===== 制度 ===== */
-  .doc-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  /* ===== E-learning 培训学习 ===== */
+  .ele-bar{background:transparent;border-radius:0;padding:18px 0 16px;margin-bottom:24px;}
+  .ele-bar-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+  .ele-bar-row:last-child{margin-bottom:0;}
+  .ele-bar-row-single{margin-bottom:0;flex-wrap:wrap;align-items:flex-end;}
+  .ele-bar-row-single .pc-search{margin-bottom:0;}
+  .ele-select{height:38px;padding:0 36px 0 14px;border:1px solid #E5E6EB;border-radius:12px;background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M6 9l6 6 6-6'/></svg>") no-repeat right 12px center;background-size:14px;font-size:14px;color:#555;cursor:pointer;outline:none;transition:all .18s;appearance:none;-webkit-appearance:none;-moz-appearance:none;min-width:120px;line-height:normal;}
+  .ele-select:hover{border-color:var(--primary);background-color:#FFF0F6;}
+  .ele-select:focus{border-color:var(--primary);background-color:#fff;box-shadow:0 0 0 3px rgba(255,68,165,.12);}
+
+  .ele-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:32px;}
+  .ele-card{background:#fff;border-radius:14px;overflow:hidden;cursor:pointer;box-shadow:0 6px 18px rgba(173,92,135,.06);transition:.22s;display:flex;flex-direction:column;}
+  .ele-card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(173,92,135,.14);}
+  .ele-card-cov{position:relative;width:100%;height:170px;overflow:hidden;background:#f0f0f0;}
+  .ele-card-cov img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease;}
+  .ele-card:hover .ele-card-cov img{transform:scale(1.05);}
+  .ele-card-cov::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 60%,rgba(0,0,0,.25));}
+  .ele-card-tags{position:absolute;left:10px;top:10px;display:flex;gap:5px;z-index:2;}
+  .ele-card-ptag{height:20px;line-height:20px;padding:0 8px;border-radius:4px;font-size:11px;font-weight:600;background:linear-gradient(135deg,#3a6fe0,#5b8df0);color:#fff;}
+  .ele-card-ptag.gold{background:linear-gradient(135deg,#d4af37,#f0c862);}
+  .ele-card-ptag.gray{background:rgba(80,84,88,.7);}
+  .ele-card-bd{padding:14px 16px 16px;flex:1;display:flex;flex-direction:column;gap:10px;}
+  .ele-card-tt{font-size:15px;font-weight:600;color:#1d1418;line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;min-height:42px;}
+  .ele-card-tags-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+  .ele-card-stag{height:20px;line-height:20px;padding:0 8px;border-radius:4px;font-size:11px;font-weight:500;}
+  .ele-card-stag.s-orange{background:#FFF1E9;color:#FF6B35;}
+  .ele-card-stag.s-blue{background:#E8F1FE;color:#3a6fe0;}
+  .ele-card-stag.s-purple{background:#F3E8FE;color:#7c3aed;}
+  .ele-card-stag.s-gray{background:#F2F3F5;color:#6b7280;}
+
+  .ele-pager{display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:14px 4px;font-size:13px;color:var(--text-2);}
+  .ele-pager-info b{color:var(--primary);font-weight:700;margin:0 2px;}
+  .ele-pager-size select{height:30px;padding:0 10px;border:1px solid #E5E6EB;border-radius:6px;background:#fff;font-size:13px;color:#333;cursor:pointer;outline:none;}
+  .ele-pager-nav{display:flex;align-items:center;gap:4px;}
+  .ele-pg-btn{min-width:32px;height:32px;padding:0 8px;border:1px solid #E5E6EB;background:#fff;border-radius:6px;font-size:13px;color:#333;cursor:pointer;transition:.15s;}
+  .ele-pg-btn:hover{border-color:var(--primary);color:var(--primary);}
+  .ele-pg-btn.active{background:linear-gradient(135deg,#ff44a5,#d70000);color:#fff;border-color:transparent;font-weight:600;}
+  .ele-pager-jump{display:inline-flex;align-items:center;gap:6px;}
+  .ele-pager-jump input{width:48px;height:30px;border:1px solid #E5E6EB;border-radius:6px;text-align:center;font-size:13px;outline:none;color:#333;}
+  .ele-pager-jump input:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(255,68,165,.12);}
+
+  /* ===== 制度 ===== */  .doc-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   .doc-item{display:flex;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:14px 18px;
     box-shadow:0 8px 22px rgba(173,92,135,.06);cursor:pointer;transition:.15s;}
   .doc-item:hover{transform:translateX(3px);box-shadow:0 12px 26px rgba(173,92,135,.12);}
@@ -184,7 +302,7 @@
   .pc-search input{border:none;background:transparent;outline:none;font-size:14px;flex:1;color:#555;font-family:inherit;}
 
   /* ===== 整体 logo（单图 SVG） ===== */
-  .pc-logo-img{height:60px;display:block;object-fit:contain;}
+  .pc-logo-img{height:44px;display:block;object-fit:contain;}
 
   /* ===== 首页 · 数据概览 ===== */
   .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px;}
@@ -235,10 +353,15 @@
   .nd-comment .ce{color:#a8a2a6;text-align:center;padding:22px 0;font-size:13px;}
   /* ===== 活动详情 · 页签 ===== */
   .dt-tabs{display:flex;gap:28px;border-bottom:1px solid #EEE6EC;margin:26px 0 20px;}
-  .dt-tab{padding:11px 2px;font-size:16px;font-weight:600;color:var(--text-3);border-bottom:2.5px solid transparent;cursor:pointer;margin-bottom:-1px;transition:.15s;}
+  .dt-tab{padding:12px 2px 14px;font-size:16px;font-weight:600;color:var(--text-3);border-bottom:2.5px solid transparent;cursor:pointer;margin-bottom:-1px;transition:.15s;}
   .dt-tab:hover{color:var(--primary);}
   .dt-tab.active{color:var(--primary);border-bottom-color:var(--primary);}
-  .dt-panel .dt-sec{margin-top:0;}
+  .dt-shell{background:#fff;border-radius:18px;box-shadow:0 10px 26px rgba(173,92,135,.06);overflow:hidden;margin-top:22px;}
+  .dt-shell .dt-tabs{margin:0;padding:14px 28px 0;border-bottom:1px solid #F3EEF2;background:transparent;}
+  .dt-panel{background:transparent;padding:22px 28px 26px;margin-top:0;box-shadow:none;border-radius:0;}
+  .dt-panel .dt-sec{background:transparent;border-radius:0;padding:0;margin-top:0;box-shadow:none;}
+  .dt-panel .dt-table{box-shadow:none;border-radius:0;}
+  .dt-panel .dt-photo img{box-shadow:none;}
   .dt-table{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 8px 22px rgba(173,92,135,.06);}
   .dt-table th{background:#FBF5F9;color:var(--text-2);font-weight:600;text-align:left;padding:13px 18px;font-size:13px;}
   .dt-table td{padding:13px 18px;border-top:1px solid #F3EEF2;color:var(--text);}
@@ -560,9 +683,10 @@
   @media (max-width:1000px){
     .home-top{grid-template-columns:1fr;} .carousel{height:320px;}
     .act-grid{grid-template-columns:repeat(2,1fr);} .ntc-grid{grid-template-columns:1fr;}
-    .dt-top{flex-direction:column;} .dt-cover{width:100%;height:auto;}
+    .dt-top{grid-template-columns:1fr;grid-template-rows:auto auto auto;} .dt-cover-card{grid-column:1/2;grid-row:1/2;} .dt-info{grid-column:1/2;grid-row:2/2;padding:22px 22px 0;} .dt-actions{grid-column:1/2;grid-row:3/3;padding:0 22px 20px;}
   }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -586,10 +710,11 @@
     </div>
     <nav class="pc-nav" id="pc-nav">
       <div class="pc-nav-item active" data-page="home" onclick="showPage('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.2V21h14V9.2"/></svg><span>首页</span></div>
-      <div class="pc-nav-item" data-page="activity" onclick="showPage('activity')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>活动</span></div>
-      <div class="pc-nav-item" data-page="memory" onclick="showPage('memory')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>记忆</span></div>
       <div class="pc-nav-item" data-page="notice" onclick="showPage('notice')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l4 4V6L6 10H4a1 1 0 0 0-1 1Z"/><path d="M15 8a4 4 0 0 1 0 8"/></svg><span>公告</span></div>
+      <div class="pc-nav-item" data-page="activity" onclick="showPage('activity')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>活动</span></div>
+      <div class="pc-nav-item" data-page="memory" onclick="showPage('memory')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>相册</span></div>
       <div class="pc-nav-item" data-page="system" onclick="showPage('system')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4a2 2 0 0 1 2-2h11v20H7a2 2 0 0 1-2-2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg><span>制度</span></div>
+      <div class="pc-nav-item" data-page="elearning" onclick="showPage('elearning')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5a6 6 0 0 0 12 0v-5"/></svg><span>E-learning</span></div>
       <div class="pc-nav-item" data-page="my" onclick="showPage('my')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>我的</span></div>
     </nav>
     <div class="pc-user" title="李小萌">
@@ -892,6 +1017,57 @@
   </section>
 
 
+  <!-- ===== E-learning 培训学习 ===== -->
+  <section class="pc-page" id="pc-elearning">
+    <div class="ele-bar">
+      <div class="ele-bar-row ele-bar-row-single">
+        <div class="pc-search" style="width:420px">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#c9a9bd" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-3.5-3.5"></path></svg>
+          <input placeholder="你想学什么">
+        </div>
+        <select class="ele-select">
+          <option>分享人</option>
+          <option>全部</option>
+          <option>薛掌亥</option>
+          <option>刘总舵</option>
+          <option>安老师</option>
+          <option>老余</option>
+        </select>
+        <select class="ele-select">
+          <option>课程类型</option>
+          <option>全部</option>
+          <option>内容</option>
+          <option>成长</option>
+          <option>运营</option>
+          <option>技术</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="ele-grid" id="ele-grid"></div>
+
+    <div class="ele-pager">
+      <span class="ele-pager-info">共 <b>3</b> 条</span>
+      <div class="ele-pager-size">
+        <select>
+          <option>60条/页</option>
+          <option>30条/页</option>
+          <option>90条/页</option>
+        </select>
+      </div>
+      <div class="ele-pager-nav">
+        <button class="ele-pg-btn">‹</button>
+        <button class="ele-pg-btn active">1</button>
+        <button class="ele-pg-btn">›</button>
+      </div>
+      <div class="ele-pager-jump">
+        前往
+        <input type="text" value="1">
+        页
+      </div>
+    </div>
+  </section>
+
   <!-- ===== 我的（个人中心） ===== -->
   <section class="pc-page" id="pc-my">
     <!-- 用户信息 Hero -->
@@ -1139,6 +1315,8 @@
 </main>
 
 <div class="toast" id="toast"></div>
+<!-- 长图生成舞台（屏外） -->
+<div id="actPosterStage" aria-hidden="true"></div>
 
 <script>
 window.openMyPointModal=window.openMyPointModal||function(){};
@@ -1169,6 +1347,292 @@ window.closeMyPointModal=window.closeMyPointModal||function(){};
     {id:8,name:"中药手串制作",start:"2026-07-30 14:00",end:"2026-07-30 16:00",address:"跑红集团总部 · 5F 非遗教室",capV:1,capP:8,pointsV:60,pointsP:30,desc:"手工制作中药手串等非遗手作",cover:"./images/activities/activity_8_herb_bracelet.png",signups:[]}
   ];
 
+  /* ===== 活动长图（每场活动独立：内容 / 行程 / 注意事项 / 联系人） ===== */
+  function buildActPoster(a){
+    var POSTERS={
+      1:{
+        tag:"FITNESS · 体育理疗",
+        sub:"WORKOUT · HEALTH · HEAL",
+        meta:["🏃 跑红健身联盟","📍 集团总部 3F 健身中心","👥 限额 5 人","✨ +50~80 积分"],
+        intro:'<b>体育理疗健身活动</b> 致力于让员工在繁忙工作之余释放压力、焕活身体。本场由国家级理疗师 <b>陈雨桐</b> 带队，结合有氧训练、筋膜放松与轻食补给，<b>每周五晚 19:00-20:30</b> 准时开练，参与即可累计积分。',
+        itinerary:[
+          {time:"18:50",t:"签到 + 换装",d:"3F 健身中心前台，更换运动服、领取毛巾"},
+          {time:"19:00",t:"破冰分组",d:"自由组队，每队 2~3 人，互相认识"},
+          {time:"19:10",t:"理疗 + 健身",d:"跟随理疗师进行有氧 + 拉伸训练"},
+          {time:"20:00",t:"冷餐分享",d:"轻食果蔬与花茶，自由交流"},
+          {time:"20:20",t:"集体合影",d:"记录美好瞬间，结束散场"}
+        ],
+        tips:[
+          "运动前 1 小时请勿饱食，避免肠胃不适",
+          "孕妇、关节损伤或身体不适者请提前告知工作人员",
+          "请自备运动服、运动鞋、毛巾及水杯",
+          "现场提供饮用水与基础补给，无需自购"
+        ],
+        contact:{name:"陈雨桐",role:"健身俱乐部主理人",phone:"138-0000-0001"}
+      },
+      2:{
+        tag:"PUBLIC · 公益行走",
+        sub:"WALK FOR GOOD · STEP FOR LOVE",
+        meta:["🌊 集美环湾绿道","👟 5km 公益健步行","👥 限额 20 人","✨ +30~50 积分"],
+        intro:'<b>「一起走」公益行走</b> 邀请全体员工以脚步传递温暖，<b>5km 环湾绿道</b> 一路海风相伴，完赛可获 <b>公益纪念徽章</b>。沿途设 3 个补水站，可携家人同行，把爱与善意一起走完。',
+        itinerary:[
+          {time:"08:00",t:"集合签到",d:"集美市民广场领取物资包"},
+          {time:"08:20",t:"开幕致辞",d:"公益项目负责人致辞 + 团队合影"},
+          {time:"08:30",t:"环湾行走",d:"5km 公益行走正式开始"},
+          {time:"10:30",t:"完赛领取",d:"发放纪念徽章与公益证书"},
+          {time:"11:00",t:"茶歇分享",d:"公益项目分享 + 自由交流"},
+          {time:"12:00",t:"活动结束",d:"散场，可自行午餐"}
+        ],
+        tips:[
+          "厦门夏季高温，请做好防晒与及时补水",
+          "建议穿着速干运动服装与舒适运动鞋",
+          "可携家人同行，请提前在报名页登记",
+          "沿途 3 个站点提供饮用水与急救服务"
+        ],
+        contact:{name:"李思远",role:"公益项目负责人",phone:"138-0000-0002"}
+      },
+      3:{
+        tag:"ECO · 可持续环保",
+        sub:"SUSTAINABLE XIAMEN · 2026",
+        meta:["🌊 厦门环岛路","🧹 海岸线净滩","👥 限额 3 人","✨ +20~40 积分"],
+        intro:'<b>「可持续一厦」环保公益</b> 用双手守护厦门海岸线。本场净滩活动聚焦 <b>环岛路椰风寨</b> 沙滩，参与者将分组清理海岸垃圾、分类统计可回收物，活动结束后可获 <b>志愿服务时长认证</b>。',
+        itinerary:[
+          {time:"09:00",t:"集中签到",d:"椰风寨景区游客中心集合"},
+          {time:"09:30",t:"工具领取",d:"发放手套、垃圾袋、夹子"},
+          {time:"10:00",t:"净滩作业",d:"分组划区进行海岸线清理"},
+          {time:"12:00",t:"简餐休息",d:"工作简餐 + 短暂休整"},
+          {time:"13:00",t:"分组清理",d:"分段深入海岸线"},
+          {time:"16:30",t:"统计 + 颁证",d:"可回收物称重 + 颁发志愿者证书"}
+        ],
+        tips:[
+          "请穿着便于行动、不怕脏的服装",
+          "活动提供全部工具，无需自带",
+          "雨天将延期举行，会另行通知",
+          "强烈建议自带防晒霜与遮阳帽"
+        ],
+        contact:{name:"黄嘉俊",role:"环保项目负责人",phone:"138-0000-0006"}
+      },
+      4:{
+        tag:"LOVE · 流浪动物",
+        sub:"ANIMAL RESCUE · COMPASSION",
+        meta:["🐾 思明救助站","❤️ 公益救助行动","👥 限额 8 人","✨ +40~60 积分"],
+        intro:'<b>流浪动物救助志愿行动</b>，走进厦门市救助保护中心，用陪伴与照料为毛孩子们带去温暖。当日将参与 <b>喂食、笼舍清洁、互动记录</b> 全流程，可自愿携带宠物食品捐赠。',
+        itinerary:[
+          {time:"10:00",t:"救助站签到",d:"思明救助站正门集合，领取工作牌"},
+          {time:"10:15",t:"流程培训",d:"救助站介绍 + 注意事项培训"},
+          {time:"10:30",t:"陪伴照料",d:"分组为收容犬猫喂食 + 清洁笼舍"},
+          {time:"12:00",t:"简餐休息",d:"工作简餐 + 短暂午休"},
+          {time:"13:00",t:"互动记录",d:"拍摄领养倡议短视频"},
+          {time:"15:30",t:"爱心传递",d:"视频发布 + 集体合影留念"}
+        ],
+        tips:[
+          "请勿擅自喂食非指定零食，需听从工作人员安排",
+          "动物可能受惊，请保持安静温柔接触",
+          "请自备一次性口罩、手套现场更换",
+          "可自愿携带宠物食品（猫粮/狗粮）捐赠"
+        ],
+        contact:{name:"周雅雯",role:"救助站联络人",phone:"138-0000-0007"}
+      },
+      5:{
+        tag:"ART · 集美艺术",
+        sub:"JIMEI ART BIENNIAL · 2026",
+        meta:["🎨 集美艺术中心","🖼 4 大主题展区","👥 限额 10 人","✨ +25~45 积分"],
+        intro:'<b>「集美超美」艺术评比</b> 旨在挖掘集美艺术区的灵感火花。当日活动将围绕 <b>4 大主题展区</b> 进行现场创作、互动工坊与艺术茶会，优秀作品将在公区展示并获得积分表彰。',
+        itinerary:[
+          {time:"14:00",t:"开幕式签到",d:"集美艺术中心正门，领取艺术护照"},
+          {time:"14:30",t:"策展人导览",d:"4 大主题展区全程讲解"},
+          {time:"15:30",t:"现场创作",d:"参与艺术互动工坊"},
+          {time:"16:30",t:"艺术茶会",d:"艺术家面对面交流 + 茶歇"},
+          {time:"17:00",t:"评比颁奖",d:"优秀作品公区展示 + 积分表彰"},
+          {time:"18:00",t:"合影留念",d:"活动结束，集体合影"}
+        ],
+        tips:[
+          "请携带个人创作工具（速写本/相机等）",
+          "可着具有艺术感的服装参与",
+          "现场提供基础材料与茶水点心",
+          "提交作品将有机会获得额外积分奖励"
+        ],
+        contact:{name:"吴浩然",role:"艺术项目主理人",phone:"138-0000-0008"}
+      },
+      6:{
+        tag:"ART · 红顶艺术馆",
+        sub:"HONGDING MUSEUM · VISIT",
+        meta:["🏛 红顶艺术馆（湖里区）","🎨 当代艺术特展","👥 限额 6 人","✨ +30~50 积分"],
+        intro:'<b>红顶艺术馆参访</b>，做客湖里区知名当代艺术场馆，<b>近距离欣赏大师原作</b>。活动由驻馆策展人全程导览，并设置艺术家对谈、艺术茶歇环节，让你度过一个充满灵感的下午。',
+        itinerary:[
+          {time:"14:00",t:"签到领取",d:"红顶艺术馆前台，领取导览手册"},
+          {time:"14:30",t:"策展人导览",d:"全程讲解当代艺术特展"},
+          {time:"15:30",t:"艺术家对谈",d:"与驻馆艺术家现场交流"},
+          {time:"16:00",t:"自由参观",d:"自由打卡 + 艺术茶歇"},
+          {time:"17:00",t:"活动结束",d:"散场，可自行前往周边"}
+        ],
+        tips:[
+          "馆内禁止使用闪光灯，请全程静音模式",
+          "请勿触摸展品，与作品保持安全距离",
+          "可携带个人相机（非商用）记录美好瞬间",
+          "馆内咖啡厅提供轻食与饮品，可自费消费"
+        ],
+        contact:{name:"郑晓彤",role:"艺术馆联络人",phone:"138-0000-0009"}
+      },
+      7:{
+        tag:"ECO · 变废为宝",
+        sub:"RECYCLE · HANDMADE · 2026",
+        meta:["🎨 2F 手作工坊","♻ 可回收塑料","👥 限额 12 人","✨ +20~40 积分"],
+        intro:'<b>可回收塑料饰品制作</b>，将日常生活中被丢弃的塑料瓶、吸管等重新设计。可制作 <b>钥匙包、创意包包、手机挂件</b> 等，让环保变得有颜有趣，作品可全部带走。',
+        itinerary:[
+          {time:"15:00",t:"工坊签到",d:"2F 手作工坊，领取材料包"},
+          {time:"15:15",t:"材料介绍",d:"导师介绍工具与材料用法"},
+          {time:"15:30",t:"设计创作",d:"自由创作环节，导师全程指导"},
+          {time:"16:30",t:"成果展示",d:"集体作品展示 + 合影留念"},
+          {time:"17:00",t:"作品带走",d:"作品打包，可佩戴或赠送亲友"}
+        ],
+        tips:[
+          "请着不怕脏的服装，便于操作",
+          "可提前构思款式，导师会协助调整",
+          "现场提供全部材料、工具与热熔设备",
+          "成品可佩戴 / 留念 / 拍照分享朋友圈"
+        ],
+        contact:{name:"孙铭泽",role:"手作工坊主理人",phone:"138-0000-0010"}
+      },
+      8:{
+        tag:"HERITAGE · 中药手作",
+        sub:"HERB BRACELET · INTANGIBLE CULTURE",
+        meta:["🌿 5F 非遗教室","📿 中药手串 DIY","👥 限额 9 人","✨ +30~60 积分"],
+        intro:'<b>中药手串制作</b>，走进非遗手作的世界。当日将由 <b>王梦琪</b> 主理，从 6 种常见中药材的辨识，到手串串制全流程，让你在动手中了解 <b>非遗手作</b> 的文化与温度。',
+        itinerary:[
+          {time:"14:00",t:"非遗教室签到",d:"5F 非遗教室，领取材料包"},
+          {time:"14:15",t:"文化讲解",d:"中药手串的历史与文化背景"},
+          {time:"14:40",t:"材料认识",d:"导师介绍各类中药材功效"},
+          {time:"15:00",t:"手工制作",d:"导师指导串制专属手串"},
+          {time:"16:00",t:"合影留念",d:"集体合影，作品可佩戴带走"}
+        ],
+        tips:[
+          "对中药材过敏者请提前告知工作人员",
+          "建议穿着舒适服装，便于操作",
+          "活动含少量粉尘环节，敏感者可戴口罩",
+          "手串作品可长期佩戴留念"
+        ],
+        contact:{name:"王梦琪",role:"非遗文化主理人",phone:"138-0000-0003"}
+      }
+    };
+    var P=POSTERS[a.id];
+    if(!P){ return '<div class="dt-desc">'+esc(a.desc||"")+'</div>'; }
+    var ts=a.start.split(" "), te=a.end.split(" ");
+    var dateStr=ts[0];
+    var timeStart=ts[1]||"";
+    var timeEnd=te[1]||"";
+    var itinerary=P.itinerary.map(function(it,i){
+      return '<div class="ap-it-row">'
+        +'<div class="ap-it-time">'+it.time+'</div>'
+        +'<div class="ap-it-bullet">'+(i+1)+'</div>'
+        +'<div class="ap-it-main"><div class="ap-it-tt">'+esc(it.t)+'</div>'
+        +'<div class="ap-it-sub">'+esc(it.d)+'</div></div>'
+        +'</div>';
+    }).join("");
+    var tips=P.tips.map(function(t){ return '<div class="ap-tip-item">'+esc(t)+'</div>'; }).join("");
+    var mt=P.meta.map(function(m){return '<span>'+m+'</span>';}).join("");
+    var c=P.contact;
+    return '<div class="act-poster" id="actPoster">'
+      +'<div class="ap-banner">'
+      +'<span class="ap-tag">'+P.tag+'</span>'
+      +'<div class="ap-title">'+esc(a.name)+'</div>'
+      +'<div class="ap-sub">'+P.sub+'</div>'
+      +'<div class="ap-meta">'+mt+'</div>'
+      +'</div>'
+      +'<div class="ap-times">'
+      +'<div><div class="t-l">开始时间</div><div class="t-v">'+dateStr+' <small>'+timeStart+'</small></div></div>'
+      +'<span class="t-arrow">→</span>'
+      +'<div style="text-align:right"><div class="t-l">结束时间</div><div class="t-v">'+timeEnd+'</div></div>'
+      +'</div>'
+      +'<div class="ap-section">'
+      +'<div class="ap-h">活动内容</div>'
+      +'<div class="ap-intro">'+P.intro+'</div>'
+      +'</div>'
+      +'<div class="ap-section">'
+      +'<div class="ap-h">行程安排</div>'
+      +'<div class="ap-itinerary">'+itinerary+'</div>'
+      +'</div>'
+      +'<div class="ap-section">'
+      +'<div class="ap-h">积分奖励</div>'
+      +'<div class="ap-points">'
+      +'<div class="ap-pt-card"><div class="pt-tt">参与者</div><div class="pt-v">+'+a.pointsP+'<small>积分</small></div><div class="pt-s">完成即可获得</div></div>'
+      +'<div class="ap-pt-card"><div class="pt-tt">志愿者</div><div class="pt-v">+'+a.pointsV+'<small>积分</small></div><div class="pt-s">服务到位优先</div></div>'
+      +'</div>'
+      +'</div>'
+      +'<div class="ap-section">'
+      +'<div class="ap-h">注意事项</div>'
+      +'<div class="ap-tips"><div class="ap-tips-list">'+tips+'</div></div>'
+      +'</div>'
+      +'<div class="ap-section">'
+      +'<div class="ap-h">活动联系人</div>'
+      +'<div class="ap-contact">'
+      +'<div class="ap-c-card"><div class="ap-c-ava">'+c.name.slice(-1)+'</div><div class="ap-c-main"><div class="ap-c-tt">'+esc(c.name)+' · '+esc(c.role)+'</div><div class="ap-c-num">'+c.phone+'</div></div></div>'
+      +'<div class="ap-c-card"><div class="ap-c-ava">📍</div><div class="ap-c-main"><div class="ap-c-tt">活动地址</div><div class="ap-c-num" style="font-size:11.5px;color:#606266">'+esc(a.address||"待公布")+'</div></div></div>'
+      +'</div>'
+      +'</div>'
+      +'<div class="ap-cta">'
+      +'<div class="c-tt">报名成功即参加，名额有限先报先得</div>'
+      +'<div class="c-sub">扫描底部二维码 · 加入活动社群</div>'
+      +'<div class="c-foot">'+dateStr+' · '+timeStart+' → '+timeEnd+' · 跑红+ 社群</div>'
+      +'</div>'
+      +'</div>';
+  }
+
+  /* ===== 长图图片缓存与生成 ===== */
+  var ACT_POSTER_CACHE={};
+  var ACT_POSTER_BUILDING={};
+
+  window.ensureActPoster=function(a, onReady){
+    if(ACT_POSTER_CACHE[a.id]){ onReady(ACT_POSTER_CACHE[a.id]); return; }
+    if(ACT_POSTER_BUILDING[a.id]){
+      ACT_POSTER_BUILDING[a.id].push(onReady);
+      return;
+    }
+    ACT_POSTER_BUILDING[a.id]=[onReady];
+
+    var stage=document.getElementById("actPosterStage");
+    if(!stage){ onReady(null); return; }
+
+    // 渲染海报到屏外舞台
+    stage.innerHTML=buildActPoster(a);
+    var poster=stage.querySelector("#actPoster");
+    if(!poster){ onReady(null); return; }
+
+    // 等图片 / 字体
+    var ready=Promise.all(Array.prototype.map.call(poster.querySelectorAll("img"),function(img){
+      return img.complete?Promise.resolve():new Promise(function(r){img.onload=img.onerror=r;});
+    }));
+    if(document.fonts && document.fonts.ready){ ready=ready.then(function(){return document.fonts.ready;}); }
+
+    ready.then(function(){
+      return html2canvas(poster,{
+        backgroundColor:"#ffffff",
+        scale:2,
+        useCORS:true,
+        allowTaint:true,
+        logging:false,
+        windowWidth:poster.scrollWidth,
+        windowHeight:poster.scrollHeight
+      });
+    }).then(function(canvas){
+      var dataUrl=canvas.toDataURL("image/png");
+      ACT_POSTER_CACHE[a.id]=dataUrl;
+      // 清理舞台
+      stage.innerHTML="";
+      // 通知所有等待者
+      var arr=ACT_POSTER_BUILDING[a.id]||[];
+      delete ACT_POSTER_BUILDING[a.id];
+      arr.forEach(function(fn){ try{ fn(dataUrl); }catch(e){} });
+    }).catch(function(err){
+      console.error("活动长图生成失败",err);
+      var arr=ACT_POSTER_BUILDING[a.id]||[];
+      delete ACT_POSTER_BUILDING[a.id];
+      stage.innerHTML="";
+      arr.forEach(function(fn){ try{ fn(null); }catch(e){} });
+    });
+  };
+
+  /* ===== 活动说明数据：联系人、长图 ==== */
   function member(id){ return MEMBERS.find(function(m){return m.id===id;}); }
   function mname(id){ var m=member(id); return m?m.name:"成员"; }
   function roleCount(a,r){ return a.signups.filter(function(s){return s.role===r;}).length; }
@@ -1182,7 +1646,7 @@ window.closeMyPointModal=window.closeMyPointModal||function(){};
 
   /* ===== 路由 ===== */
   window.showPage=function(id){
-    ["home","activity","act-detail","memory","notice","notice-detail","system","my"].forEach(function(k){
+    ["home","activity","act-detail","memory","notice","notice-detail","system","elearning","my"].forEach(function(k){
       document.getElementById("pc-"+k).classList.toggle("active",k===id);
     });
     var navId=(id==="act-detail")?"activity":(id==="notice-detail")?"notice":id;
@@ -1191,6 +1655,7 @@ window.closeMyPointModal=window.closeMyPointModal||function(){};
     });
     if(id==="home"){ renderHomeActs(); renderHomeClub(); }
     else if(id==="activity") renderActList();
+    else if(id==="elearning") renderElearning();
     window.scrollTo(0,0);
   };
 
@@ -1426,10 +1891,9 @@ window.closeMyPointModal=window.closeMyPointModal||function(){};
     document.getElementById("act-detail-body").innerHTML=
       '<div class="dt-top"><div class="dt-cover-card">'
       +'<img class="dt-cover" src="'+acImg(a)+'" alt="">'
-      +'<div class="dt-cover-cap"><div class="dt-cover-name">'+esc(a.name)+'</div>'
-      +'<div class="dt-cover-sub">'+(a.desc?(a.desc.replace(/<[^>]+>/g,"").slice(0,22)):'共同参与的主题社群活动')+'</div></div>'
       +'</div>'
       +'<div class="dt-info">'
+      +'<div class="dt-name">'+esc(a.name)+'</div>'
       +'<div class="dt-rows">'
       +'<div class="dt-row"><span class="k">状态</span><span class="tag'+(st==="ended"||st==="full"?" gray":"")+'">'+AC_ST[st]+'</span></div>'
       +'<div class="dt-row"><span class="k">活动时间</span>'+a.start+' ~ '+a.end+'</div>'
@@ -1438,16 +1902,33 @@ window.closeMyPointModal=window.closeMyPointModal||function(){};
       +'<div class="dt-row"><span class="k">参与者</span><span class="dt-prog"><b>'+pP+'/'+a.capP+'</b><em>（剩余 '+rP+' 个）</em><span class="dt-pbar"><i style="width:'+wP+'%"></i></span></span></div>'
       +'<div class="dt-row"><span class="k">积分奖励</span><span class="dt-award">参与者 <b>+'+a.pointsP+'</b> · 志愿者 <b>+'+a.pointsV+'</b><em>报名成功即参加并按角色获得，名额各自先报先得</em></span></div>'
       +'</div>'
+      +'</div>'
       +'<div class="dt-actions">'+btns+'</div>'
-      +'</div></div>'
+      +'</div>'
+      +'<div class="dt-shell">'
       +'<div class="dt-tabs">'
       +'<div class="dt-tab active" onclick="detailTab(this,\'desc\')">活动说明</div>'
       +'<div class="dt-tab" onclick="detailTab(this,\'list\')">报名名单（'+a.signups.length+'）</div>'
       +'<div class="dt-tab" onclick="detailTab(this,\'photos\')">活动照片'+((a.photos&&a.photos.length)?'（'+a.photos.length+'）':'')+'</div>'
       +'</div>'
-      +'<div class="dt-panel" id="dtp-desc"><div class="dt-sec"><div class="dt-desc">'+esc(a.desc)+'</div></div></div>'
+      +'<div class="dt-panel" id="dtp-desc"><div class="dt-sec">'
+      +'<div class="ap-img-wrap" id="apImgWrap-'+a.id+'">'
+      +'<div class="ap-img-loading"><div class="spinner"></div><div>长图生成中…</div><div class="pct">首次打开需 1-2 秒</div></div>'
+      +'</div>'
+      +'</div></div>'
       +'<div class="dt-panel" id="dtp-list" style="display:none">'+signers+'</div>'
-      +'<div class="dt-panel" id="dtp-photos" style="display:none">'+photos+'</div>';
+      +'<div class="dt-panel" id="dtp-photos" style="display:none">'+photos+'</div>'
+      +'</div>';
+    // 异步生成活动长图
+    window.ensureActPoster(a, function(dataUrl){
+      var wrap=document.getElementById('apImgWrap-'+a.id);
+      if(!wrap) return;
+      if(dataUrl){
+        wrap.innerHTML='<img src="'+dataUrl+'" alt="'+esc(a.name)+' 长图">';
+      }else{
+        wrap.innerHTML='<div class="ap-img-loading"><div style="color:#d70000;font-weight:700">长图生成失败</div><div class="pct">请刷新页面重试</div></div>';
+      }
+    });
   }
   window.detailTab=function(el,k){
     Array.prototype.forEach.call(el.parentNode.children,function(t){ t.classList.toggle("active",t===el); });
@@ -1516,10 +1997,35 @@ window.closeMyPointModal=window.closeMyPointModal||function(){};
       +'<div class="nd-comment"><div class="ct">共 '+(n.comments||0)+' 条评论</div><div class="ce">暂无评论，快来抢沙发～</div></div>';
   }
 
+  /* ===== E-learning 课程数据 ===== */
+  var ELEARNING = [
+    { id: 1, title: "从字节角度探索真实的人格塑造", ptag: "成长专题", ptagCls: "", tags: [["薛掌亥","s-orange"],["刘总舵","s-blue"]], cov: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20professional%20Asian%20man%20in%20his%2030s%20wearing%20glasses%20giving%20a%20speech%20in%20a%20modern%20conference%20hall%2C%20cinematic%20lighting%2C%20warm%20tones%2C%20clean%20background%20with%20blue%20gradient%2C%20photorealistic&image_size=portrait_4_3" },
+    { id: 2, title: "一条爆款短视频的诞生", ptag: "安老师", ptagCls: "gold", tags: [["内容","s-blue"],["安老师","s-orange"]], cov: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20young%20Asian%20female%20teacher%20smiling%20and%20speaking%20to%20a%20small%20audience%20about%20short%20video%20creation%2C%20modern%20co-working%20space%20with%20soft%20natural%20lighting%2C%20light%20blue%20and%20white%20background%2C%20photorealistic%20portrait&image_size=portrait_4_3" },
+    { id: 3, title: "如何让产品在视频里自己说话", ptag: "安老师", ptagCls: "gold", tags: [["内容","s-blue"],["老余","s-orange"]], cov: "https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20young%20Asian%20male%20teacher%20in%20a%20light%20gray%20shirt%20explaining%20product%20marketing%20in%20front%20of%20a%20clean%20white%20and%20blue%20backdrop%2C%20soft%20studio%20lighting%2C%20photorealistic%20portrait%2C%20shallow%20depth%20of%20field&image_size=portrait_4_3" }
+  ];
+  function renderElearning(){
+    var el = document.getElementById("ele-grid");
+    if(!el) return;
+    el.innerHTML = ELEARNING.map(function(c){
+      var ptagCls = c.ptagCls ? " "+c.ptagCls : "";
+      return '<div class="ele-card" onclick="toast(\'即将打开：'+esc(c.title)+'\')">'
+        +'<div class="ele-card-cov">'
+          +'<img src="'+c.cov+'" alt="">'
+          +'<div class="ele-card-tags"><span class="ele-card-ptag'+ptagCls+'">'+esc(c.ptag)+'</span></div>'
+        +'</div>'
+        +'<div class="ele-card-bd">'
+          +'<div class="ele-card-tt">'+esc(c.title)+'</div>'
+          +'<div class="ele-card-tags-row">'+c.tags.map(function(t){return '<span class="ele-card-stag '+t[1]+'">'+esc(t[0])+'</span>';}).join('')+'</div>'
+        +'</div>'
+      +'</div>';
+    }).join("");
+  }
+
   window.wish=function(name){ toast("已向 "+name+" 送出生日祝福 🎉"); };
 
   renderHomeActs(); renderHomeClub();
   renderActList();
+  renderElearning();
 })();
 </script>
 </body>
