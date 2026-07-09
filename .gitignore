@@ -1,0 +1,28 @@
+# 依赖与构建产物
+node_modules/
+output/
+dist/
+build/
+
+# IDE / 编辑器配置
+.trae/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统与调试文件
+.DS_Store
+Thumbs.db
+*.log
+debug_page.png
+
+# 环境变量
+.env
+.env.local
+.env.*.local
+
+# 临时文件
+*.tmp
+*.bak
+*.orig

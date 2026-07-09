@@ -95,6 +95,23 @@
   .bless-title{display:block;font-size:15px;font-weight:700;line-height:1.5;color:#333;padding:14px 16px 10px;}
   .bless-meta{font-size:13px;line-height:1.6;color:#999;padding:10px 16px 6px;}
   .bless-meta time{display:block;margin-top:2px;font-size:12px;color:#bbb;}
+  /* 公告 / 制度 页 */
+  .ntc-search{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #f0dce6;border-radius:12px;padding:9px 12px;margin-bottom:12px;box-shadow:0 6px 16px rgba(173,92,135,.06);}
+  .ntc-search input{border:none;background:transparent;outline:none;font-size:13px;flex:1;color:#666;font-family:inherit;}
+  #ntc-tabs{overflow-x:auto;flex-wrap:nowrap;}
+  #ntc-tabs::-webkit-scrollbar{display:none;}
+  #ntc-tabs .af-tab{flex-shrink:0;}
+  .bless-btn{display:block;width:calc(100% - 32px);margin:4px 16px 14px;height:36px;background:#fff;color:#FF0086;border:1px solid #FF0086;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:inherit;}
+  .bless-btn:active{background:#FFF5FB;}
+  .doc-item{display:flex;align-items:center;gap:12px;background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:10px;box-shadow:0 6px 16px rgba(173,92,135,.06);cursor:pointer;}
+  .doc-item:active{background:#FAFAFB;}
+  .doc-ico{width:42px;height:52px;border-radius:6px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;letter-spacing:.5px;}
+  .doc-ico.pdf{background:linear-gradient(135deg,#ff7a7a,#ea504e);}
+  .doc-ico.doc{background:linear-gradient(135deg,#7aa8ff,#3a6fe0);}
+  .doc-main{flex:1;min-width:0;}
+  .doc-name{font-size:15px;font-weight:600;color:#333;line-height:1.4;}
+  .doc-meta{font-size:12px;color:#909399;margin-top:4px;}
+  .doc-arrow{color:#c9c9d1;font-size:18px;flex-shrink:0;line-height:1;}
   .row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid #F2F3F5;}
   .row:last-child{border-bottom:none;}
   .rk-no{width:24px;height:24px;line-height:24px;text-align:center;border-radius:50%;background:#F2F3F5;color:#909399;font-size:13px;font-weight:600;flex-shrink:0;}
@@ -226,7 +243,7 @@
 <!-- 我的 -->
 <div class="page" id="p-my">
   <div class="my-hero">
-    <div class="my-avatar"><img src="./images/avatar.png" alt="" onerror="this.outerHTML='白';"></div>
+    <div class="my-avatar"><img src="<images_data_path>" alt="" onerror="this.outerHTML='白';"></div>
     <div class="my-name">白小白</div>
     <div class="my-sub">运营</div>
   </div>
@@ -300,14 +317,49 @@
 
 <!-- 公告（占位） -->
 <div class="page" id="p-notice">
-  <div class="h1">公告</div>
-  <div class="empty" style="padding:80px 0;">内容建设中，敬请期待</div>
+  <div class="h1" style="margin-bottom:12px;">公告</div>
+  <div class="ntc-search">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#c9a9bd" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-3.5-3.5"></path></svg>
+    <input placeholder="搜索公告...">
+  </div>
+  <div class="act-filter" id="ntc-tabs">
+    <div class="af-tab active" onclick="noticeFilter(this,'')">全部</div>
+    <div class="af-tab" onclick="noticeFilter(this,'行政通知')">行政通知</div>
+    <div class="af-tab" onclick="noticeFilter(this,'文化活动')">文化活动</div>
+  </div>
+  <div id="ntc-list">
+    <div class="bless-card" data-cat="行政通知">
+      <div class="bless-title">2026年跑红集团五一放假通知 <span class="tag" style="margin-right:0;">行政通知</span></div>
+      <img class="bless-cover" src="./images/notice_1.png" alt="五一放假通知">
+      <div class="bless-meta">发布人：跑红集团<time>2026-04-28 09:00</time></div>
+      <button class="bless-btn">查看详情</button>
+    </div>
+    <div class="bless-card" data-cat="行政通知">
+      <div class="bless-title">📢 厦门办公室部分楼层搬迁安排通知 <span class="tag" style="margin-right:0;">行政通知</span></div>
+      <img class="bless-cover" src="./images/notice_2.png" alt="楼层搬迁安排通知">
+      <div class="bless-meta">发布人：跑红集团<time>2026-04-20 14:00</time></div>
+    </div>
+    <div class="bless-card" data-cat="文化活动">
+      <div class="bless-title">2026年Q2文化月活动预告 <span class="tag" style="margin-right:0;">文化活动</span></div>
+      <img class="bless-cover" src="./images/notice_3.png" alt="文化月活动预告">
+      <div class="bless-meta">发布人：跑红集团<time>2026-04-15 16:30</time></div>
+      <button class="bless-btn">查看详情</button>
+    </div>
+  </div>
 </div>
 
 <!-- 制度（占位） -->
 <div class="page" id="p-system">
-  <div class="h1">制度</div>
-  <div class="empty" style="padding:80px 0;">内容建设中，敬请期待</div>
+  <div class="h1" style="margin-bottom:12px;">制度</div>
+  <div class="ntc-search">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#c9a9bd" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-3.5-3.5"></path></svg>
+    <input placeholder="搜索制度关键词...">
+  </div>
+  <div class="doc-item"><div class="doc-ico pdf">PDF</div><div class="doc-main"><div class="doc-name">跑红集团员工手册2026</div><div class="doc-meta">PDF · 2.8MB · 人事</div></div><span class="doc-arrow">›</span></div>
+  <div class="doc-item"><div class="doc-ico doc">DOC</div><div class="doc-main"><div class="doc-name">员工考勤管理制度</div><div class="doc-meta">DOC · 1.2MB · 人事</div></div><span class="doc-arrow">›</span></div>
+  <div class="doc-item"><div class="doc-ico pdf">PDF</div><div class="doc-main"><div class="doc-name">报销与财务审批流程</div><div class="doc-meta">PDF · 0.8MB · 财务</div></div><span class="doc-arrow">›</span></div>
+  <div class="doc-item"><div class="doc-ico doc">DOC</div><div class="doc-main"><div class="doc-name">办公室行为规范</div><div class="doc-meta">DOC · 0.5MB · 行政</div></div><span class="doc-arrow">›</span></div>
+  <div class="doc-item"><div class="doc-ico pdf">PDF</div><div class="doc-main"><div class="doc-name">绩效考核管理办法</div><div class="doc-meta">PDF · 1.5MB · 人事</div></div><span class="doc-arrow">›</span></div>
 </div>
 
 <!-- 底部导航 -->
@@ -507,6 +559,12 @@
     ["acts","blessing"].forEach(function(t){
       document.getElementById("st-"+t).classList.toggle("active",t===k);
       document.getElementById("tab-"+t).style.display=(t===k)?"block":"none";
+    });
+  };
+  window.noticeFilter=function(el,cat){
+    Array.prototype.forEach.call(el.parentNode.children,function(t){ t.classList.toggle("active",t===el); });
+    Array.prototype.forEach.call(document.querySelectorAll("#ntc-list .bless-card"),function(c){
+      c.style.display=(!cat||c.getAttribute("data-cat")===cat)?"":"none";
     });
   };
   window.openAct=function(id){ renderDetail(id); go('detail'); };
