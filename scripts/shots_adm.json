@@ -1,0 +1,17 @@
+[
+  {"name":"adm-01-活动管理列表","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"hmfShowView('activity')","wait":900,"fullPage":true},
+  {"name":"adm-02-活动预览详情","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"dtOpen(4)","wait":900,"fullPage":true},
+  {"name":"adm-03-发布活动表单","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"acOpen()","wait":1200,"fullPage":true},
+  {"name":"adm-04-报名弹框","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"suOpen(3,'p')","wait":800,"fullPage":false,"clip":"#su-mask .hh-modal"},
+  {"name":"adm-05-发布弹框选部门","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"sdOpen(6)","wait":800,"fullPage":false,"clip":"#sd-mask .hh-modal"},
+  {"name":"adm-06-积分明细","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"hmfShowView('points'); ptTab('detail')","wait":900,"fullPage":true},
+  {"name":"adm-07-按人统计","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"hmfShowView('points'); ptTab('person')","wait":900,"fullPage":true},
+  {"name":"adm-08-积分审核","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"hmfShowView('points'); ptTab('audit')","wait":900,"fullPage":true},
+  {"name":"adm-09-添加积分弹框","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"hmfShowView('points'); ptTab('audit'); paOpen(); paMemberFilter()","wait":900,"fullPage":false},
+  {"name":"adm-10-积分规则配置","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"hmfShowView('rules')","wait":900,"fullPage":true},
+  {"name":"adm-11-新增规则弹框","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"hmfShowView('rules'); rlOpen()","wait":800,"fullPage":false,"clip":"#rl-mask .hh-modal"},
+  {"name":"adm-12-兑换订单列表","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"hmfShowView('order')","wait":900,"fullPage":true},
+  {"name":"adm-13-派发订单弹框","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"hmfShowView('order'); odOpen(3)","wait":800,"fullPage":false,"clip":"#od-mask .hh-modal"},
+  {"name":"adm-14-礼品管理","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"hmfShowView('goods')","wait":900,"fullPage":true},
+  {"name":"adm-15-添加商品弹框","file":"模板页.html","width":1440,"height":900,"dsf":2,"js":"hmfShowView('goods'); gdOpen()","wait":800,"fullPage":false,"clip":"#gd-mask .hh-modal"}
+]

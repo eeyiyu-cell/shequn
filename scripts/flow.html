@@ -1,0 +1,43 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei","微软雅黑",sans-serif}
+body{background:#fff;padding:34px 40px}
+.wrap{width:1180px}
+.lane{display:flex;align-items:stretch;margin-bottom:22px}
+.lane-tag{width:96px;flex:0 0 96px;display:flex;align-items:center;justify-content:center;
+  border-radius:12px;color:#fff;font-size:17px;font-weight:700;letter-spacing:2px}
+.lane-ops .lane-tag{background:linear-gradient(135deg,#c79a4e,#9a7b3f)}
+.lane-usr .lane-tag{background:linear-gradient(135deg,#f0a6c6,#e11d48)}
+.flow{flex:1;display:flex;align-items:center;flex-wrap:wrap;gap:0 4px;padding-left:16px}
+.node{background:#fbf7ef;border:1.5px solid #e0d2b0;border-radius:10px;padding:12px 16px;
+  font-size:15px;color:#3a2f1a;min-width:120px;text-align:center;line-height:1.5}
+.lane-usr .node{background:#fdf1f5;border-color:#f4c6d6;color:#7a1030}
+.arrow{color:#c0a86a;font-size:22px;font-weight:700}
+.lane-usr .arrow{color:#e58aa8}
+h2{font-size:15px;color:#9a7b3f;margin:2px 0 18px 2px;font-weight:400}
+.title{font-size:20px;font-weight:700;color:#262626;margin-bottom:4px}
+</style></head><body><div class="wrap">
+<div class="title">社群积分系统 · 业务主流程</div>
+<h2>运营侧配置与审核 · 用户侧参与与兑换（正常主路径）</h2>
+
+<div class="lane lane-ops">
+  <div class="lane-tag">运营侧</div>
+  <div class="flow">
+    <div class="node">配置积分规则<br>与礼品</div><div class="arrow">→</div>
+    <div class="node">发布活动<br>（全体/指定部门）</div><div class="arrow">→</div>
+    <div class="node">审核积分申请<br>（通过/驳回）</div><div class="arrow">→</div>
+    <div class="node">派发兑换订单<br>→ 完成结单</div>
+  </div>
+</div>
+
+<div class="lane lane-usr">
+  <div class="lane-tag">用户侧</div>
+  <div class="flow">
+    <div class="node">浏览<br>Power Club+ 活动</div><div class="arrow">→</div>
+    <div class="node">报名参加 /<br>我要成为志愿者</div><div class="arrow">→</div>
+    <div class="node">参加并签到<br>获得积分</div><div class="arrow">→</div>
+    <div class="node">查看积分明细<br>/ 排行 / 规则</div><div class="arrow">→</div>
+    <div class="node">兑换礼品<br>生成订单</div><div class="arrow">→</div>
+    <div class="node">查看礼品订单<br>发放状态</div>
+  </div>
+</div>
+</div></body></html>

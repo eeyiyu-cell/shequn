@@ -1,0 +1,15 @@
+[
+  {"name":"mob-01-活动列表(PowerClub+)","file":"h5.html","width":390,"height":844,"dsf":2,"js":"go('activity')","wait":900,"fullPage":true},
+  {"name":"mob-02-活动详情","file":"h5.html","width":390,"height":844,"dsf":2,"js":"openAct(2)","wait":1000,"fullPage":true},
+  {"name":"mob-03-报名身份弹框(报名参加)","file":"h5.html","width":390,"height":844,"dsf":2,"js":"openAct(6); showRolePick(6,'p')","wait":800,"fullPage":false},
+  {"name":"mob-04-我要成为志愿者","file":"h5.html","width":390,"height":844,"dsf":2,"js":"openAct(6); showRolePick(6,'v')","wait":800,"fullPage":false},
+  {"name":"mob-05-我的(积分卡深色)","file":"h5.html","width":390,"height":844,"dsf":2,"js":"go('my')","wait":900,"fullPage":true},
+  {"name":"mob-06-积分获取规则","file":"h5.html","width":390,"height":844,"dsf":2,"js":"go('my'); showRulesModal()","wait":800,"fullPage":false},
+  {"name":"mob-07-积分明细","file":"h5.html","width":390,"height":844,"dsf":2,"js":"go('records')","wait":800,"fullPage":true},
+  {"name":"mob-08-积分排行榜","file":"h5.html","width":390,"height":844,"dsf":2,"js":"go('rank')","wait":800,"fullPage":true},
+  {"name":"mob-09-兑换礼品(含预告)","file":"h5.html","width":390,"height":844,"dsf":2,"js":"go('gifts')","wait":800,"fullPage":true},
+  {"name":"mob-10-兑换确认弹框","file":"h5.html","width":390,"height":844,"dsf":2,"js":"go('gifts'); redeem(3)","wait":800,"fullPage":false},
+  {"name":"mob-11-礼品订单","file":"h5.html","width":390,"height":844,"dsf":2,"js":"go('orders')","wait":800,"fullPage":true},
+  {"name":"mob-12-公告","file":"h5.html","width":390,"height":844,"dsf":2,"js":"go('notice')","wait":800,"fullPage":true},
+  {"name":"mob-13-制度","file":"h5.html","width":390,"height":844,"dsf":2,"js":"go('system')","wait":800,"fullPage":true}
+]

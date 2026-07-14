@@ -1,0 +1,19 @@
+[
+  {"name":"pc-01-文化首页","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"showPage('home')","wait":1200,"fullPage":true},
+  {"name":"pc-02-公告列表(横向)","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"showPage('notice')","wait":900,"fullPage":true},
+  {"name":"pc-03-公告详情(评论)","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"openNotice(1)","wait":1000,"fullPage":true},
+  {"name":"pc-04-社群活动(PowerClub+)","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"showPage('activity')","wait":900,"fullPage":true},
+  {"name":"pc-05-活动详情","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"openAct(6)","wait":5000,"fullPage":true},
+  {"name":"pc-06-报名弹框(报名参加)","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"openAct(6); openSignup(6,'p')","wait":1200,"fullPage":false},
+  {"name":"pc-07-我要成为志愿者","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"openAct(6); openSignup(6,'v')","wait":1200,"fullPage":false},
+  {"name":"pc-08-记忆相册","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"showPage('memory')","wait":900,"fullPage":true},
+  {"name":"pc-09-制度","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"showPage('system')","wait":900,"fullPage":true},
+  {"name":"pc-10-E-learning","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"showPage('elearning')","wait":1000,"fullPage":true},
+  {"name":"pc-11-我的(个人中心)","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"showPage('my')","wait":1000,"fullPage":true},
+  {"name":"pc-12-积分排行榜","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"showPage('my'); openMyPointModal('rank')","wait":900,"fullPage":false},
+  {"name":"pc-13-兑换礼品(含预告)","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"showPage('my'); openMyPointModal('mall')","wait":900,"fullPage":false},
+  {"name":"pc-14-兑换确认弹框","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"showPage('my'); openMyPointModal('mall'); openExchange(0)","wait":1000,"fullPage":false},
+  {"name":"pc-15-礼品订单","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"showPage('my'); openMyPointModal('orders')","wait":900,"fullPage":false},
+  {"name":"pc-16-积分明细","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"showPage('my'); openMyPointModal('records')","wait":900,"fullPage":false},
+  {"name":"pc-17-积分获取规则","file":"pc.html","width":1440,"height":900,"dsf":2,"js":"showPage('my'); openMyPointModal('rules')","wait":900,"fullPage":false}
+]
